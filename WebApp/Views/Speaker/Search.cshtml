@@ -1,0 +1,72 @@
+@model System.Collections.Generic.List<Domain.Dtos.Speaker.SpeakerClientDto>?
+
+
+@if (Model != null)
+{
+    foreach (var speaker in Model)
+    {
+        <div class="col">
+            <div class="speaker-card">
+                <div class="speaker-top">
+                    <img class="speaker-image" src="~/@speaker.FileCode" alt="">
+                    <ul class="social-list d-flex align-items-center justify-content-between">
+                        @if (speaker.Facebook is not null)
+                        {
+                            <li>
+                                <a href="@speaker.Facebook" target="_blank">
+                                    <figure>
+                                        <img class="svg" src="/assets/img/icons/facebook-icons.svg" alt="facebook icon">
+                                    </figure>
+                                </a>
+                            </li>
+                        }
+                        @if (speaker.Instagram is not null)
+                        {
+                            <li>
+                                <a href="@speaker.Instagram" target="_blank">
+                                    <figure>
+                                        <img class="svg" src="/assets/img/icons/instagram-icons.svg"
+                                             alt="instagram icon">
+                                    </figure>
+                                </a>
+                            </li>
+                        }
+                        @if (speaker.Twitter is not null)
+                        {
+                            <li>
+                                <a href="@speaker.Twitter" target="_blank">
+                                    <figure>
+                                        <img class="svg" src="/assets/img/icons/twitter-icons.svg" alt="twitter icon">
+                                    </figure>
+                                </a>
+                            </li>
+                        }
+                        @if (speaker.LinkedIn is not null)
+                        {
+                            <li>
+                                <a href="@speaker.LinkedIn" target="_blank">
+                                    <figure>
+                                        <img class="svg" src="/assets/img/icons/linkedin-icons.svg" alt="linkedin icon">
+                                    </figure>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                    <div class="square-gruop">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="speaker-info text-center">
+                    <p class="name">@speaker.FullName</p>
+                    <p class="status">@speaker.Postion</p>
+                    <article class="texting">
+                        @Html.Raw(@speaker.Text)
+                    </article>
+                </div>
+            </div>
+        </div>
+    }
+}
+

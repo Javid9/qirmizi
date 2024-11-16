@@ -36,7 +36,8 @@
 
             <div class="input-group">
                 <input type="email" id="searchKeyInput" class="form-control" placeholder="Axtarış et">
-                <button type="button" id="searchButtonEvent" class="btn d-flex align-items-center justify-content-center">
+                <button type="button" id="searchButtonEvent"
+                        class="btn d-flex align-items-center justify-content-center">
                     <i class="bi bi-search"></i>
                 </button>
             </div>
@@ -60,9 +61,10 @@
         </div>
         <div id="cardList" class="event-card-list">
             <div class="card-content">
-              @foreach (var events in Model)
+                @foreach (var events in Model)
                 {
-                    <a asp-action="Detail" asp-controller="Event" asp-route-lang="@lang" asp-route-slugUrl="@events.SlugUrl" class="event-card d-block">
+                    <a asp-action="Detail" asp-controller="Event" asp-route-lang="@lang"
+                       asp-route-slugUrl="@events.SlugUrl" class="event-card d-block">
                         <div class="content row g-0">
                             <div class="col-lg-3">
                                 <div class="event-image">
@@ -81,15 +83,15 @@
                                         <div class="d-flex card-info">
                                             @if (events.Speakers is not null)
                                             {
-                                               @foreach (var speaker in events?.Speakers!)
+                                                @foreach (var speaker in events?.Speakers!)
                                                 {
                                                     <p class="speaker-name me-3">@speaker.FullName</p>
                                                 }
                                             }
-                                          
-                                            @if(events.Categories is not null)
+
+                                            @if (events.Categories is not null)
                                             {
-                                               @foreach (var category in events.Categories)
+                                                @foreach (var category in events.Categories)
                                                 {
                                                     <p class="category-name">@category.Title</p>
                                                 }
@@ -97,7 +99,7 @@
                                         </div>
                                         <p class="location d-flex align-items-center">
                                             <i class="bi bi-geo-alt-fill me-3"></i>
-                                           @events.Address
+                                            @events.Address
                                         </p>
                                     </div>
                                     <span class="arrow d-flex align-items-center">
@@ -121,3 +123,7 @@
     <div class="circles circle-right d-none d-lg-block"></div>
     <div class="mini-box mini-box-right d-none d-lg-block"></div>
 </section>
+
+@section Plugins {
+    <script src="/assets/js/request.js"></script>
+}
