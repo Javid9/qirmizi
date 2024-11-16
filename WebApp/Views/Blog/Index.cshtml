@@ -1,0 +1,88 @@
+﻿@using Domain.Dtos.Blog
+@model List<BlogClientDto>
+
+@{
+    var lang = ViewBag.Lang ?? "az";
+}
+
+ <section class="section-pdng blog-section">
+        <main class="container z-2">
+            <div class="header d-flex flex-wrap align-items-center justify-content-between">
+                <div class="left">
+                    <nav class="crumbNav" style="--bs-breadcrumb-divider: '>';">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Əsas səhifə</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Bloq</li>
+                        </ol>
+                    </nav>
+                    <p class="headerOrange">BÜTÜN PAYLAŞIMLAR</p>
+                    <p class="pageName">BLOQ</p>
+                </div>
+                <div class="right d-flex align-items-center">
+                    <p class="me-4">Kateqoriya</p>
+                    <div class="dropdown">
+                        <button class="btn btn-category d-flex align-items-center justify-content-between" type="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="dropdownText text-truncate"> Hamısı</span>
+                            <i class="bi bi-chevron-down ms-3"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg-end categoryDown">
+                            <button class="dropdown-item" data-value="hamısı">Hamısı</button>
+                            <button class="dropdown-item" data-value="Category1">Category1</button>
+                            <button class="dropdown-item" data-value="Category2">Category2</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div  id="cardList" class="blog-card-list">
+                <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4 card-content">
+                   @foreach (var blog in Model)
+                {
+                    <div class="col">
+                        <a asp-action="Detail" asp-controller="Blog" asp-route-lang="@lang" asp-route-slugUrl="@blog.SlugUrl" class="blog-card">
+                            <div class="content">
+                                <div class="blog-card-img">
+                                    <img src="~/@blog.FileCode" alt="@blog.SlugUrl">
+                                </div>
+                                <div class="blog-card-content">
+                                    <div class="d-flex flex-wrap blog-card-header justify-content-between">
+
+                                        @foreach (var category in blog?.Categories!)
+                                        {
+                                            <p>@category.Title</p>
+                                        }
+                                     
+                                        <div class="d-flex">
+                                            <p class="date me-3">@blog.CreateDate</p>
+                                            <p class="time">@blog.Clock</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <p class="heading">
+                                           @blog.Title
+                                        </p>
+                                        <img class="svg arrow-rotate" src="/assets/img/icons/arrow-rotate.svg" alt="">
+                                    </div>
+                                    <p class="texting">
+                                        @Html.Raw(@blog.Text)
+                                    </p>
+                                </div>
+                            </div>
+
+                        </a>
+                    </div>
+                }
+                </div>
+                <div class="loading d-none">
+                    <div class="spinner-border text-light" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+         
+        </main>
+        <div class="circles circle-left d-none d-lg-block"></div>
+        <div class="mini-box mini-box-right d-none d-lg-block"></div>
+        <div class="mini-box mini-box-left d-none d-lg-block" data-aos="fade-right"
+        data-aos-easing="linear"></div>
+    </section>

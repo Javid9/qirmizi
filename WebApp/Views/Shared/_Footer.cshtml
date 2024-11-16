@@ -1,0 +1,91 @@
+﻿@using Domain.Dtos.AppConfig
+@inject IConfiguration configuration
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <img class="d-block d-lg-none mx-auto mb-5" src="/assets/img/icons/logo.svg" alt="" />
+            <div class="row">
+                <div class="col-lg-6 col-xl-5 pe-xl-5">
+                    <div class="left">
+                        <p class="heading">E-POÇT DAXİL EDİN</p>
+                        <p class="texting">
+                            Yeni tədbirlərdən xəbərdar olmaq üçün e-poçt ünvanını daxil
+                            edin
+                        </p>
+                        <form class="input-group">
+                            <input type="email" class="form-control" placeholder="E-poçt ünvanı" />
+                            <button class="btn d-flex align-items-center justify-content-center" type="submit">
+                                <i class="bi bi-arrow-right-short"></i>
+                            </button>
+                        </form>
+                        <ul class="d-flex align-items-center justify-content-center justify-content-lg-start social-list">
+                            <li>
+                                <a href="#">
+                                    <img class="svg" src="/assets/img/icons/facebook-icons.svg" alt="" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img class="svg" src="/assets/img/icons/instagram-icons.svg" alt="" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img class="svg" src="/assets/img/icons/twitter-icons.svg" alt="" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img class="svg" src="/assets/img/icons/linkedin-icons.svg" alt="" />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-5 offset-xl-1 ms-auto">
+                    <div class="right">
+                        <div class="row d-none d-lg-flex g-4 menu-list flex-wrap">
+                            <a href="#">Ana Səhifə</a>
+                            <a href="#">Haqqımızda</a>
+                            <a href="#">Tədbirlər</a>
+                            <a href="#">Spikerlər</a>
+                            <a href="#">Bloq</a>
+                            <a href="#">Əlaqə</a>
+                        </div>
+                        <div class="right-bottom d-none d-lg-block">
+                            <p>Hesabınız daxil olun və ya qeydiyyatdan keçin</p>
+                            <div class="d-flex align-items-center justify-content-end mt-4 footer-membership">
+                                <a href="#" class="btn me-4">Qeydiyyat</a>
+                                <a href="#" class="btn">Daxil ol</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="d-flex flex-column flex-lg-row align-items-center justify-content-between">
+                <p>©️2024. Bütün hüquqlar qorunur!</p>
+                <img class="d-none d-lg-block" src="/assets/img/icons/logo.svg" alt="" />
+                <div class="d-flex align-items-center">
+                    <a href="#" class="me-4">Gizlilik və qaydalar</a>
+                    <div class="dropdown">
+                        <button class="btn btn-lang" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dil: Az
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">EN</a></li>
+                            <li><a class="dropdown-item" href="#">RU</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+

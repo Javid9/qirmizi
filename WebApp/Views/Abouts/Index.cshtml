@@ -1,0 +1,263 @@
+﻿@using Domain.Dtos.About
+@model AboutVM
+
+
+@{
+    var index = 0;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css" />
+}
+
+<section class="section-pdng about-header-section">
+    <main class="container">
+        <div class="header">
+            <nav class="crumbNav" style="--bs-breadcrumb-divider: '>'">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Əsas səhifə</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Haqqımızda
+                    </li>
+                </ol>
+            </nav>
+            <p class="headerOrange">LAYİHƏ HAQQINDA</p>
+        </div>
+        <div class="header-content">
+            <h3 class="heading">
+                Sed morbi sed diam morbi in est nulla sagittis. Scelerisque
+                facilisis placerat eleifend cursus lectus auctor malesuada.
+            </h3>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 card-list g-4">
+                <div class="col" data-aos="fade-up" data-aos-easing="linear" data-aos-delay="150">
+                    <figure class="about-image-card">
+                        <img src="/assets/img/Image/about1.png" alt="" />
+                    </figure>
+                </div>
+                <div class="col" data-aos="fade-up" data-aos-easing="linear" data-aos-delay="350">
+                    <figure class="about-image-card">
+                        <img src="/assets/img/Image/about2.png" alt="" />
+                    </figure>
+                </div>
+                <div class="col" data-aos="fade-up" data-aos-easing="linear" data-aos-delay="650">
+                    <figure class="about-image-card">
+                        <img src="/assets/img/Image/about3.png" alt="" />
+                    </figure>
+                </div>
+            </div>
+            <div class="circles circle-left d-none d-lg-block"></div>
+        </div>
+        <div class="center-content">
+            <p class="heading">
+                In senectus duis tristique adipiscing vel. Egestas porta enim nisi
+                pellentesque lorem non vel mattis consectetur.
+            </p>
+            <div class="video-card-content">
+                <figure>
+                    <img class="top-right" src="/assets/img/Image/about1.png" alt="about image 1" data-aos="fade-up-right"
+                         data-aos-easing="linear" data-aos-duration="500" />
+                </figure>
+                <figure>
+                    <img class="top-left" src="/assets/img/Image/about2.png" alt="about image 2" data-aos="fade-left"
+                         data-aos-easing="linear" data-aos-duration="500" />
+                </figure>
+                <figure>
+                    <img class="bottom-left" src="/assets/img/Image/about3.png" alt="about image 3" data-aos="fade-down-left"
+                         data-aos-easing="linear" data-aos-duration="500" />
+                </figure>
+                <a href="https://www.youtube.com/watch?v=CdLru5oF4Zg" class="video-card col-lg-8 mx-auto" data-frame>
+                    <figure>
+                        <img class="back" src="/assets/img/Image/video-card-image.png" alt="about video cover" />
+                    </figure>
+                    <figure>
+                        <img class="play-icon" src="/assets/img/icons/play-icon.svg" alt="play icon" />
+                    </figure>
+                </a>
+            </div>
+        </div>
+    </main>
+    <div class="box-bottom" data-aos="fade-left" data-aos-easing="ease" data-aos-duration="1500"></div>
+    <div class="circles circle-center d-none d-lg-block"></div>
+</section>
+
+<section class="statistics-section">
+    <main class="container">
+        <h3 class="heading">Statistikalarımız</h3>
+        <div class="row row-cols-1 row-cols-lg-4 g-4">
+            <div class="col" data-aos="fade-up" data-aos-easing="ease" data-aos-duration="250" data-aos-delay="200">
+                <div class="statistic-card">
+                    <figure class="icon">
+                        <img src="/assets/img/icons/static-ticket-icon.svg" alt="" />
+                    </figure>
+                    <div class="text-bodys">
+                        <p class="number">10.000+</p>
+                        <p class="texting">Bilet satışı</p>
+                    </div>
+                    <!-- Hover text -->
+                    <div class="text-content">
+                        <p>Tədirlərimizə ümumi 10000-dən çox bilet satılıb</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col" data-aos="fade-up" data-aos-easing="ease" data-aos-duration="500" data-aos-delay="400">
+                <div class="statistic-card">
+                    <figure class="icon">
+                        <img src="/assets/img/icons/static-spiker-icon.svg" alt="" />
+                    </figure>
+                    <div class="text-bodys">
+                        <p class="number">7+</p>
+                        <p class="texting">Spiker</p>
+                    </div>
+                    <!-- Hover text -->
+                    <div class="text-content">
+                        <p>Tədirlərimizə ümumi 10000-dən çox bilet satılıb</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col" data-aos="fade-up" data-aos-easing="ease" data-aos-duration="750" data-aos-delay="600">
+                <div class="statistic-card">
+                    <figure class="icon">
+                        <img src="/assets/img/icons/static-event-icon.svg" alt="" />
+                    </figure>
+                    <div class="text-bodys">
+                        <p class="number">100+</p>
+                        <p class="texting">Tədbir</p>
+                    </div>
+                    <!-- Hover text -->
+                    <div class="text-content">
+                        <p>Tədirlərimizə ümumi 10000-dən çox bilet satılıb</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col" data-aos="fade-up" data-aos-easing="ease" data-aos-duration="1000" data-aos-delay="800">
+                <div class="statistic-card">
+                    <figure class="icon">
+                        <img src="/assets/img/icons/event-partner-icon.svg" alt="" />
+                    </figure>
+                    <div class="text-bodys">
+                        <p class="number">100+</p>
+                        <p class="texting">Tərəfdaş</p>
+                    </div>
+                    <!-- Hover text -->
+                    <div class="text-content">
+                        <p>Tədirlərimizə ümumi 10000-dən çox bilet satılıb</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</section>
+
+<section class="about-bottom-section">
+    <div class="container">
+        <div class="bottom-header">
+            <p>ƏTRAFLI MƏLUMAT</p>
+            <h2>
+                Amet turpis tincidunt vestibulum pulvinar pulvinar. Mus pulvinar
+                risus amet sit libero. Lobortis lectus gravida scelerisque pharetra
+                sodales enim nullam commodo.
+            </h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <article data-aos="fade-right" data-aos-easing="ease" data-aos-duration="1000">
+                    <p class="left-text pe-4">
+                        Morbi volutpat ultrices felis feugiat bibendum ornare tortor sem
+                        amet. Facilisis augue dictumst pharetra mattis potenti volutpat
+                        commodo. Non nulla vulputate lorem risus dictumst vel a eget.
+                        Feugiat massa elementum ut sit non. Ipsum quam viverra habitasse
+                        convallis sit. Sagittis mauris eget varius mollis orci nisl est.
+                        Sed purus amet nibh ultricies. Semper elementum id blandit
+                        vestibulum lorem ut dictum sit faucibus. Sed pulvinar
+                        consectetur penatibus fermentum. Facilisis tristique sit in dui
+                        cras non nec diam duis.
+                    </p>
+                </article>
+            </div>
+            <div class="col-lg-5">
+                <div class="about-bottom-right">
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        <div class="col">
+                            <figure data-aos="fade-up" data-aos="fade-up" data-aos-easing="ease" data-aos-duration="1000">
+                                <img src="/assets/img/static-image/image1.png" alt="" />
+                            </figure>
+                        </div>
+                        <div class="col">
+                            <figure data-aos="fade-left" data-aos-easing="ease" data-aos-duration="1000">
+                                <img src="/assets/img/static-image/image2.png" alt="" />
+                            </figure>
+                        </div>
+                        <div class="col">
+                            <figure data-aos="fade-down" data-aos-easing="ease" data-aos-duration="1000">
+                                <img src="/assets/img/static-image/image3.png" alt="" />
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-partner-section">
+    <div class="container">
+        <div class="header d-flex flex-column align-items-center justify-content-center">
+            <h1>TƏRƏFDAŞLAR</h1>
+            <p>Tərəfdaşlarımızın siyahısı</p>
+        </div>
+    </div>
+    <div class="swiper about-partner-slider">
+        @if(Model.Photos != null)
+        {
+            <div class="swiper-wrapper">
+                @foreach (var photo in Model?.Photos!)
+                {
+                    <div class="swiper-slide">
+                        <a class="partner-card">
+                            <figure>
+                                <img src="~/@photo.FileCode" />
+                            </figure>
+                        </a>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+
+
+<section class="about-question-section">
+    <div class="container">
+        <div class="header d-flex flex-column align-items-center justify-content-center">
+            <h1>ÇOX VERİLƏN SUALLAR</h1>
+            <p>Suallar və cavablar</p>
+        </div>
+        <div class="accordion" id="accordionExample">
+            <!-- Accordion Items -->
+            @foreach (var faq in Model.AboutClients!.SelectMany(item => item.FaqFeatures!))
+            {
+                var collapseId = $"collapse{index}";
+                var headingId = $"heading{index}";
+                index++;
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="@headingId">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseId" aria-expanded="false" aria-controls="@collapseId">
+                            @faq.Question
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </h2>
+                    <div id="@collapseId" class="accordion-collapse collapse" aria-labelledby="@headingId" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">@faq.Answer</div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+
+
+c

@@ -1,0 +1,69 @@
+﻿@using NeyeyekApp.Domain.Dtos.User
+@model LoginUserDto
+
+<section class="section-pdng membership-section">
+    <main class="container z-2 position-relative">
+        <div class="row g-4">
+            <div class="col-lg-5">
+                <div class="membership-content">
+                    <div class="header">
+                        <h2>Hesabınıza daxil olun</h2>
+                        <div class="d-flex flex-column flex-xl-row align-items-xl-center header-bottom">
+                            <p class="me-3">Hesabınız yoxdur?</p>
+                            <a asp-action="Login" asp-controller="User" class="register-link d-flex align-items-center mt-3 mt-xl-0">
+                                Qeydiyyatdan keçin
+                                <i class="bi bi-arrow-right-short ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <form asp-action="Login" method="post" asp-antiforgery="true">
+                        <div class="form-box">
+                            <img class="svg icon" src="/assets/img/icons/email-icon.svg" alt="" />
+                            <input type="text" class="form-control" asp-for="Email" placeholder="E-poçt ünvanı" />
+                        </div>
+                        <div class="form-box">
+                            <img class="svg icon" src="/assets/img/icons/unlock-icon.svg" alt="" />
+                            <input type="password" class="form-control" asp-for="Password" placeholder="Şifrə" />
+                            <span class="see-paswword">
+                                <i class="bi bi-eye-fill"></i>
+                            </span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <input class="form-check-input me-2" type="checkbox" id="remember" value="option1" />
+                                <label class="form-check-label" for="remember">Məni xatırla</label>
+                            </div>
+                            <a href="#" class="forgotPassword-link">Şifrəni unutmusunuz?</a>
+                        </div>
+                        <button type="submit"
+                                class="btn btn-send btn-login-send d-flex align-items-center justify-content-center">
+                            DAXIL OL
+                            <img class="svg ms-3" src="/assets/img/icons/send-arrow.svg" alt="" />
+                        </button>
+                    </form>
+                    <div class="and-or">
+                        <p>və ya</p>
+                    </div>
+                    <div class="flex flex-column social-buttons">
+                        <button id="customGoogleButton" type="button" class="btn btn-login-social">
+                            <img class="svg me-3" src="/assets/img/icons/google-icon.svg" alt="" />
+                            GOOGLE HESABI İLƏ DAXİL OL
+                        </button>
+                        <button type="button" id="customFacebookButton" class="btn btn-login-social">
+                            <img class="svg me-3" src="/assets/img/icons/facebook-icon.svg" alt="" />
+                            FACEBOOK HESABI İLƏ DAXİL OL
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 offset-lg-1 ps-lg-5">
+                <div class="membership-image">
+                    <img src="/assets/img/Image/membership-test.png" alt="" />
+                    <span class="box"></span>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="circles circle-left d-none d-lg-block"></div>
+        <div class="circles circle-right d-none d-lg-block"></div>
+</section>

@@ -1,0 +1,78 @@
+﻿@using Application.Helpers
+@using Domain.Dtos.Slider;
+@model CreateSliderDto
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+@{
+    var languages = (await languageService.GetAllLangAsync()).Data.Select(x => new { Code = x.Code, Name = x.Name }).ToList();
+
+    var forms = new List<FormField>();
+    for (int index = 0; index < languages.Count; index++)
+    {
+        var lang = languages[index];
+        forms.Add(new FormField { LangCode = lang.Code, Name = $"SliderLanguages[{index}].Title", Type = "text", Label = $"Başlıq", Value = string.Empty });
+        forms.Add(new FormField { LangCode = lang.Code, Name = $"SliderLanguages[{index}].Language_Code", Type = "hidden", Value = lang.Code });
+    }
+}
+
+
+<header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+    <div class="container-xl px-4">
+        <div class="page-header-content pt-4">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-auto mt-4">
+                    <h1 class="page-header-title">
+                        <span class="page-header-icon"><i data-feather="edit-3"></i></span>
+                        Slider
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container-xl px-4 mt-n10">
+    <form id="fromloading" asp-action="Create" asp-antiforgery="true" enctype="multipart/form-data">
+        <div class="row">
+
+            <div class="col-lg-8">
+                <div class="card card-header-actions mb-4">
+                    <div class="card-header">
+                        Tercüme edilecek sahələr
+                    </div>
+                    <div class="card-body">
+                        <language-tabs languages="languages" form-fields="forms" tab-id="slider"></language-tabs>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-header">Slider</div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label" for="file">Şəkil</label>
+                            <input name="file" class="form-control" type="file" id="file" accept=".jpeg, .jpg, .png, .svg">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Link</label>
+                            <input type="text" class="form-control" asp-for="Link">
+                            <span class="text-danger" asp-validation-for="Link"></span>
+                        </div>
+
+                        <div class="bn">
+                            <button type="submit" class="btn  btn-primary">Yadda Saxla</button>
+                            <a asp-action="Index" class="btn  btn-dark">Imtina et</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+

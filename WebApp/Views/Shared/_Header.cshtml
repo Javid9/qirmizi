@@ -1,0 +1,101 @@
+﻿@using Domain.Entities
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Domain.Dtos.AppConfig
+@inject IConfiguration configuration
+
+
+@{
+    var lang = ViewBag.Lang ?? "az";
+}
+
+
+<header class="menu-header">
+    <nav class="navbar-content">
+        <div class="container">
+            <div class="navbar-main d-flex align-items-center justify-content-between">
+                <!-- WEB LOGO -->
+
+                <a asp-action="Index" asp-controller="Home" class="navbar-logo">
+                    <img class="svg" src="/assets/img/icons/logo.svg" alt="navbar logo" />
+                </a>
+
+                <!-- NAVBAR DESKTOP MENU -->
+
+                <div class="navbar-desktop-menu d-none d-lg-flex align-items-center">
+                    <div class="navbar-item">
+                        <a asp-action="Index" asp-controller="Home" asp-route-lang="@lang" class="navbar-links">Ana Səhifə</a>
+                    </div>
+
+                    <div class="navbar-item">
+                        <a asp-action="Index" asp-controller="Abouts" asp-route-lang="@lang" class="navbar-links">Haqqımızda</a>
+                    </div>
+
+                    <div class="navbar-item">
+                        <a asp-action="Index" asp-controller="Event" asp-route-lang="@lang" class="navbar-links">Tədbirlər</a>
+                    </div>
+
+                    <div class="navbar-item">
+                        <a asp-action="Index" asp-controller="Speaker" asp-route-lang="@lang" class="navbar-links">Spikerlər</a>
+                    </div>
+
+                    <div class="navbar-item">
+                        <a asp-action="Index" asp-controller="Blog" asp-route-lang="@lang" class="navbar-links">Bloq</a>
+                    </div>
+                    <div class="navbar-item">
+                        <a asp-action="Index" asp-controller="Contact" asp-route-lang="@lang" class="navbar-links">Əlaqə</a>
+                    </div>
+                </div>
+
+                <div class="d-none d-lg-flex align-items-center navbar-membership">
+                    <a asp-action="Register" asp-controller="User" class="btn me-4 linkone">Qeydiyyat</a>
+                    <a asp-action="Login" asp-controller="User" class="btn d-flex align-items-center linktwo">
+                        <i class="bi bi-person-fill me-3"></i>Daxil ol
+                    </a>
+                </div>
+
+                <!-- MOBİLE MENU START -->
+                <div class="Toggle-menu-navbar d-flex d-lg-none align-items-center">
+                    <input class="checkbox nav-icons-check" type="checkbox" name="navicons" id="navicons" />
+                    <label for="navicons" class="hamburger-lines">
+                        <span class="line line1"></span>
+                        <span class="line line2"></span>
+                        <span class="line line3"></span>
+                    </label>
+                    <div class="toggle">
+                        <div class="container toggle-container">
+                            <div class="menu-body d-flex flex-column justify-content-center">
+                                <ul class="menu-list d-flex flex-column align-items-center">
+                                    <!-- MOBİLE MENU START -->
+                                    <li class="menu-item">
+                                        <a href="index.html" class="menu-links">Ana səhifə</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="about.html" class="menu-links">Haqqımızda</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="event.html" class="menu-links">Tədbirlər</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="speaker.html" class="menu-links">Spikerlər</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="bloq.html" class="menu-links">Bloq</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="contact.html" class="menu-links">Əlaqə</a>
+                                    </li>
+                                </ul>
+                                <div class="mobile-remember d-flex align-items-center justify-content-center mt-5">
+                                    <a href="register.html" class="btn">Qeydiyyat</a>
+                                    <a href="login.html" class="btn"><i class="bi bi-person-fill me-2"></i>Daxil ol</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- MOBİLE MENU END -->
+            </div>
+        </div>
+    </nav>
+</header>

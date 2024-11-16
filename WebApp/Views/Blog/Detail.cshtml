@@ -1,0 +1,114 @@
+﻿@model BlogVM
+
+@{
+    var lang = ViewBag.Lang ?? "az";
+}
+
+    <section class="section-pdng blog-detail-section">
+        <main class="container z-2">
+            <nav class="crumbNav" style="--bs-breadcrumb-divider: '>';">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Əsas səhifə</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Bloq</li>
+                </ol>
+            </nav>
+            <div class="detail-content">
+                <div class="header-body d-flex flex-column align-items-center">
+                @if(Model?.GetBlog?.CategoryDetail is not null)
+                {
+                    <p>@Model?.GetBlog?.CategoryDetail.Title</p>
+                }
+                <p class="heading" id="socialHeading" data-aos="fade-up"
+                   data-aos-easing="linear">@Model?.GetBlog?.Title</p>
+                    <div class="d-flex">
+                    <p class="date">@Model?.GetBlog?.CreateDate @Model?.GetBlog?.Clock</p>
+                    </div>
+                </div>
+                <div class="detail-body">
+                    <div class="body-image">
+                        <figure>
+                        <img src="~/@Model?.GetBlog?.FileCode" alt="@Model?.GetBlog?.SlugUrl">
+                        </figure>
+                    </div>
+                
+                    <article>
+                       @Html.Raw(@Model?.GetBlog?.Text)
+                    </article>
+
+                    <div class="blog-share d-flex flex-column align-items-center">
+                        <h2>Bu paylaşımı sosial şəbəkə hesablarınızda paylaşmaq istəyirsiniz?</h2>
+                        <div class="btn-group dropup mt-4">
+                            <button type="button" class="btn btn-share mx-auto d-inline-block" data-bs-toggle="dropdown" aria-expanded="false">
+                                PAYLAŞ
+                                <i class="bi bi-share-fill ms-2"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <div class="lists d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center justify-content-center items btn-facebook">
+                                        <img class="svg" src="/assets/img/icons/facebook-icons.svg" alt="">
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center items btn-twitter">
+                                        <img class="svg" src="/assets/img/icons/twitter-icons.svg" alt="">
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center items btn-linkedin">
+                                        <img class="svg" src="/assets/img/icons/linkedin-icons.svg" alt="">
+                                    </div>
+                                </div>
+                        
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <section class="other-blog-section">
+        <main class="container">
+            <p class="other-heading">Digər paylaşımlara da <br>
+                baxa bilərsiniz
+            </p>
+            <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
+               @foreach (var allBlog in Model?.AllBlog!)
+            {
+                <div class="col">
+                    <a asp-action="Detail" asp-controller="Blog" asp-route-lang="@lang" asp-route-slugUrl="@allBlog.SlugUrl" class="blog-card">
+                        <div class="content">
+                            <div class="blog-card-img">
+                                <img src="~/@allBlog.FileCode" alt="@allBlog.SlugUrl">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="d-flex flex-wrap blog-card-header justify-content-between">
+                                    @if(allBlog?.Categories is not null)
+                                    {
+                                        @foreach (var category in allBlog?.Categories!)
+                                        {
+                                            <p>@category.Title</p>
+                                        }
+                                    }
+                                    <div class="d-flex">
+                                        <p class="date me-3">@allBlog?.CreateDate</p>
+                                        <p class="time">@allBlog?.Clock</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <p class="heading">
+                                       @allBlog?.Title
+                                    </p>
+                                    <img class="svg arrow-rotate" src="/assets/img/icons/arrow-rotate.svg" alt="">
+                                </div>
+                                <p class="texting">
+                                    @Html.Raw(@allBlog?.Text)
+                                </p>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+            }
+            </div>
+            <a href="bloq.html" class="btn btn-other">digər paylaşımlara bax
+                <img class="svg arrow-rotate" src="/assets/img/icons/arrow-rotate.svg" alt="">
+            </a>
+        </main>
+    </section>

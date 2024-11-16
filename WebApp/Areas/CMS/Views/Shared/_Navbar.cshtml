@@ -1,0 +1,98 @@
+<nav class="sidenav shadow-right sidenav-light">
+    <div class="sidenav-menu">
+        <div class="nav accordion" id="accordionSidenav">
+            <div class="sidenav-menu-heading">Ana Sayfa</div>
+            <!-- Sidenav Accordion (Dashboard)-->
+            <a class="nav-link" asp-area="Cms" asp-controller="Default" asp-action="Index">
+                <div class="nav-link-icon ">
+                    <i data-feather="activity"></i>
+                </div>
+                Ana Səhifə
+            </a>
+            <!-- Sidenav Heading (Custom)-->
+            <div class="sidenav-menu-heading">Cms Sayfaları</div>
+            <!-- Sidenav Accordion (Pages)-->
+            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+               data-bs-target="#collapseContent" aria-expanded="false" aria-controls="collapseContent">
+                <div class="nav-link-icon">
+                    <i data-feather="clipboard"></i>
+                </div>
+                İçerik
+                <div class="sidenav-collapse-arrow ">
+                    <i class="fas fa-angle-down"></i>
+                </div>
+            </a>
+            <div class="collapse" id="collapseContent" data-bs-parent="#accordionSidenav">
+                <nav class="sidenav-menu-nested nav accordion">
+                    <a class="nav-link" asp-area="Cms" asp-controller="Language"
+                       asp-action="Index">
+                        Tərcümə dilləri
+                    </a>
+
+                    <a class="nav-link" asp-area="Cms" asp-controller="Slider"
+                       asp-action="Index">
+                        Slayder
+                    </a>
+
+
+                    <a class="nav-link" asp-area="Cms" asp-controller="Speaker"
+                       asp-action="Index">
+                        Speakerler
+                    </a>
+
+                    <a class="nav-link" asp-area="Cms" asp-controller="Category"
+                       asp-action="Index">
+                        Kategoryalar
+                    </a>
+
+                    <a class="nav-link" asp-area="Cms" asp-controller="Blog"
+                       asp-action="Index">
+                       Blog
+                    </a>
+
+                    <a class="nav-link" asp-area="Cms" asp-controller="About"
+                       asp-action="Index">
+                       Haqqimzida
+                    </a>
+
+                    <a class="nav-link" asp-area="Cms" asp-controller="Event"
+                       asp-action="Index">
+                        Event
+                    </a>
+
+                    <a class="nav-link" asp-area="Cms" asp-controller="Contact"
+                       asp-action="Index">
+                        Contact
+                    </a>
+
+                    <a class="nav-link" asp-area="Cms" asp-controller="Static"
+                       asp-action="Index">
+                        Statik Səhifələr
+                    </a>
+
+                </nav>
+            </div>
+
+            <div class="sidenav-menu-heading">Ayarlar</div>
+            <a class="nav-link" asp-area="Cms" asp-action="Index" asp-controller="AppSeo">
+                <div class="nav-link-icon">
+                    <i data-feather="tool"></i>
+                </div>
+                Səhifə Seo Ayarları
+            </a>
+            <a class="nav-link" asp-area="Cms" asp-action="Index" asp-controller="AppConfig">
+                <div class="nav-link-icon">
+                    <i data-feather="settings"></i>
+                </div>
+                Ümumi Ayarlar  
+            </a>
+        </div>
+    </div>
+    <!-- Sidenav Footer-->
+    <div class="sidenav-footer">
+        <div class="sidenav-footer-content">
+            <div class="sidenav-footer-subtitle">Logged in as:</div>
+            <div class="sidenav-footer-title">@User.Identity?.Name</div>
+        </div>
+    </div>
+</nav>

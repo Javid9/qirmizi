@@ -1,0 +1,269 @@
+﻿@model HomeVm
+
+@{
+    var lang = ViewBag.Lang ?? "az";
+}
+
+<section class="home-header-section">
+        <main class="in-content">
+            <h1 class="header-heading"></h1>
+            <a class="btn btn-link" id="headerButtonLink" data-aos="fade-right" data-aos-easing="ease"
+               data-aos-duration="1000">
+                <i class="bi bi-arrow-right-short"></i>
+            </a>
+            <div class="box-content">
+                @foreach (var slider in Model?.SliderClients!)
+            {
+                <div class="item" data-text="@slider.Title" data-url="/@slider.Link">
+                    <figure>
+                        <img src="~/@slider.FileCode" alt="@slider.SlugUrl" />
+                    </figure>
+                </div>
+            }
+                
+            </div>
+        </main>
+    </section>
+
+    <section class="home-about-section">
+        <main class="container z-2 position-relative">
+            <div class="about-content">
+                <div class="header">
+                    <p class="heading">LAYİHƏ HAQQINDA</p>
+                    <p class="texting">
+                        Amet turpis tincidunt vestibulum pulvinar pulvinar. Mus pulvinar
+                        risus amet sit libero. Lobortis lectus gravida scelerisque
+                        pharetra sodales enim nullam commodo.
+                    </p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-5">
+                        <div class="home-about-image">
+                            <div class="row row-cols-1 row-cols-md-2 g-4">
+                                <div class="col" data-aos="fade-up" data-aos-easing="ease" data-aos-duration="1000">
+                                    <figure>
+                                        <img src="/assets/img/static-image/image1.png" alt="about image left" />
+                                    </figure>
+
+                                </div>
+                                <div class="col" data-aos="fade-left" data-aos-easing="ease" data-aos-duration="1000">
+                                    <figure>
+                                        <img src="/assets/img/static-image/image2.png" alt="about image right" />
+                                    </figure>
+
+                                </div>
+                                <div class="col" data-aos="fade-down" data-aos-easing="ease" data-aos-duration="1000">
+                                    <figure>
+                                        <img src="/assets/img/static-image/image3.png" alt="about image bottom" />
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 ps-lg-5">
+                        <div class="text-body ps-lg-5">
+                            <p class="left-text pe-4">
+                                Amet turpis tincidunt vestibulum pulvinar pulvinar. Mus
+                                pulvinar risus amet sit libero. Lobortis lectus gravida
+                                scelerisque pharetra sodales enim nullam commodo.
+                            </p>
+                            <a asp-action="Index" asp-controller="Abouts" asp-route-lang="@lang" class="btn btn-link">
+                                davamına bax
+                                <figure>
+                                    <img class="svg arrow-rotate" src="/assets/img/icons/arrow-rotate.svg" alt="arrow icon" />
+                                </figure>
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="event-list">
+                <p class="heading">TƏDBİRLƏRİN SİYAHISI</p>
+                <div class="list-main">
+
+                   @foreach (var evnt in Model?.EventClinets!)
+                {
+                    <a asp-action="Detail" asp-controller="Event" asp-route-slugUrl="@evnt.SlugUrl" asp-route-lang="@lang" data-aos="fade-right" data-aos-easing="ease" data-aos-duration="500" class="event-list-card"
+                       data-bg-url="/assets/img/Image/blog-card-1.png">
+                        <div class="content row align-items-lg-center">
+                            <div class="col-lg-2">
+                                <p class="fw-500 mb-3">@evnt.EventDay</p>
+                                <p class="fw-300">@evnt.Clock</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="fw-600 mb-3 text-truncate">
+                                   @evnt.Title
+                                </p>
+                                @if(evnt.Speakers != null && evnt.Speakers.Any())
+                                {
+                                    @foreach (var evntSpeaker in evnt?.Speakers!)
+                                    {
+                                        <p class="fw-300">@evntSpeaker.FullName</p>
+                                    }
+                                }
+                            </div>
+                            <div class="col-lg-3">
+                               @if(evnt.Categories != null && evnt.Categories.Any())
+                                {
+                                    @foreach (var evntCategory in evnt?.Categories!)
+                                    {
+                                        <p class="fw-500 mb-3">@evntCategory.Title</p>
+                                    }
+                                }
+                                <p class="fw-300">@evnt.Address</p>
+                            </div>
+                            <div class="col-lg-1">
+                                <div class="d-flex align-items-center arrow">
+                                    <p>ƏTRAFLI</p>
+                                    <i class="bi bi-arrow-right-short ms-2"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                }
+
+                </div>
+                <a asp-action="Index" asp-controller="Event" asp-route-lang="@lang" class="btn btn-other">
+                    digər tədbirlərə bax
+                    <figure>
+                        <img class="svg arrow-rotate" src="/assets/img/icons/arrow-rotate.svg" alt="arrow icon" />
+                    </figure>
+
+                </a>
+            </div>
+        </main>
+        <div class="circles circle-left d-none d-lg-block"></div>
+    </section>
+
+    <section class="home-speaker-section">
+        <main class="container z-2 position-relative">
+            <div class="header d-flex flex-column align-items-center justify-content-center">
+                <p>TƏDBİRLƏRİN SPİKERLƏRİ</p>
+                <h3>SPİKERLƏR</h3>
+            <span>Viverra quisque morbi ornare tristique adipiscing.</span>
+            </div>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-5">
+               @foreach (var speaker in Model.SpeakerClients!)
+            {
+                <div class="col">
+                    <div class="speaker-card">
+                        <div class="speaker-top">
+                            <img class="speaker-image" src="~/@speaker.FileCode" alt="" />
+                            <ul class="social-list d-flex align-items-center justify-content-between">
+                                
+                                @if(speaker.Facebook is not null)
+                                {
+                                    <li>
+                                        <a href="@speaker.Facebook" target="_blank">
+                                            <img class="svg" src="/assets/img/icons/facebook-icons.svg" alt="" />
+                                        </a>
+                                    </li>
+                                }
+
+                                @if(speaker.Instagram is not null)
+                                {
+                                    <li>
+                                        <a href="@speaker.Instagram" target="_blank">
+                                            <img class="svg" src="/assets/img/icons/instagram-icons.svg" alt="" />
+                                        </a>
+                                    </li>
+                                }
+
+                                @if(speaker.Twitter is not null)
+                                {
+                                    <li>
+                                        <a href="@speaker.Twitter" target="_blank">
+                                            <img class="svg" src="/assets/img/icons/twitter-icons.svg" alt="" />
+                                        </a>
+                                    </li>
+                                }
+
+
+                                @if(speaker.LinkedIn is not null)
+                                {
+                                    <li>
+                                        <a href="@speaker.LinkedIn" target="_blank">
+                                            <img class="svg" src="/assets/img/icons/linkedin-icons.svg" alt="" />
+                                        </a>
+                                    </li>
+                                }
+
+                                
+                            </ul>
+                            <div class="square-gruop">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="speaker-info text-center">
+                            <p class="name">@speaker.FullName</p>
+                            <p class="status">@speaker.Postion</p>
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
+            <a href="speaker.html" class="btn btn-other">
+                bütün spikerlərə bax
+                <img class="svg arrow-rotate" src="/assets/img/icons/arrow-rotate.svg" alt="" />
+            </a>
+        </main>
+        <div class="circles circle-center d-none d-lg-block"></div>
+        <div class="triangle d-none d-lg-block"></div>
+        <div class="square-box d-none d-lg-block aos-bounce-in" data-aos data-aos-offset="300"></div>
+    </section>
+
+    <section class="home-video-section">
+        <main class="container">
+            <p data-aos="fade-right" data-aos="fade-up" data-aos-easing="ease" data-aos-duration="1000">
+                In senectus duis tristique adipiscing vel. Egestas porta enim nisi
+                pellentesque lorem non vel mattis consectetur.
+            </p>
+            <a href="https://www.youtube.com/watch?v=CdLru5oF4Zg" class="video-card" data-frame data-aos="fade-up"
+               data-aos-easing="ease" data-aos-duration="1250">
+                <figure>
+                    <img class="cover-photo" src="/assets/img/static-image/home-video-cover.png" alt="cover photo" />
+                </figure>
+                <figure>
+                    <img class="play-icon" src="/assets/img/icons/play-icon.svg" alt="" />
+                </figure>
+            </a>
+        </main>
+        <div class="circles circle-right d-none d-lg-block"></div>
+    </section>
+
+    <section class="home-contact-section">
+        <main class="container">
+            <div class="contact-content">
+                <div class="d-flex flex-column flex-md-row align-items-center justify-content-between h-100">
+                    <div class="d-flex flex-column left">
+                        <p class="heading" data-aos="fade-right" data-aos="fade-up" data-aos-easing="ease" data-aos-duration="1000">
+                            BİZİMLƏ ƏLAQƏ SAXLAYIN
+                        </p>
+                        <p class="texting" data-aos="fade-right" data-aos="fade-up" data-aos-easing="ease" data-aos-duration="1500">
+                            Bizimlə əlaqə saxlamaq üçün sağdakı düymə vasitəsilə əlaqə
+                            səhifəsinə keçid edin
+                        </p>
+                    </div>
+                    <a href="#" class="contact-link">
+                        <span class="arrow d-flex align-items-center justify-content-center">
+                            <i class="bi bi-arrow-right-short"></i>
+                            <span class="line line-1"></span>
+                            <span class="line line-2"></span>
+                            <span class="line line-3"></span>
+                            <span class="line line-4"></span>
+                        </span>
+                        <span class="icons icon-phone">
+                            <img src="/assets/img/icons/contact-phone-icon.svg" alt="" />
+                        </span>
+                        <span class="icons icon-mail">
+                            <img src="/assets/img/icons/contact-mail-icon.svg" alt="" />
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </main>
+        <div class="circles circle-left d-none d-lg-block"></div>
+    </section>

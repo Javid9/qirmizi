@@ -1,0 +1,55 @@
+﻿@using Domain.Dtos.Category
+@model IEnumerable<CategoryDto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+    <div class="container-xl px-4">
+        <div class="page-header-content pt-4">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-auto mt-4">
+                    <h1 class="page-header-title">
+                        <span class="page-header-icon"><i data-feather="filter"></i></span>
+                        Category
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container-xl px-4 mt-n10">
+    <div class="card card-header-actions mb-4">
+        <div class="card-header">
+            Category Listesi
+            <div class="rid">
+                <a asp-action="Create" class="btn btn-sm btn-primary">Category Əlave et</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>Basliq</th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Title</td>
+                            <td>
+                                <a asp-action="Update" asp-route-id="@item?.Id" class="btn btn-datatable btn-icon btn-transparent-dark me-2"><i data-feather="more-vertical"></i></a>
+                                <a asp-action="Delete" asp-route-id="@item?.Id" onclick="return confirm('Are you sure you want to delete it?')" class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="trash-2"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

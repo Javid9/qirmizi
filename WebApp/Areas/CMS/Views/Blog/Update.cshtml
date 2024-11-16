@@ -1,0 +1,150 @@
+﻿@using Domain.Dtos.Blog;
+@model UpdateBlogDto
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+@{
+    var languages = (await languageService.GetAllLangAsync()).Data.Select(x => new { Code = x.Code, Name = x.Name }).ToList();
+
+    var forms = new List<FormField>();
+    var formSeo = new List<FormField>();
+    for (int index = 0; index < languages.Count; index++)
+    {
+
+        var lang = languages[index];
+        var model = Model.BlogLanguages?.FirstOrDefault(x => x.Language_Code == lang.Code);
+
+        forms.Add(new FormField { LangCode = lang.Code, Name = $"BlogLanguages[{index}].Title", Type = "text", Label = $"Başlıq", Required = false, Value = model?.Title });
+        forms.Add(new FormField { LangCode = lang.Code, ClassNames = "texteditor", Name = $"BlogLanguages[{index}].Text", Type = "textarea", Label = $"Mətin", Value = model?.Text });
+        forms.Add(new FormField { LangCode = lang.Code, Name = $"BlogLanguages[{index}].Language_Code", Type = "hidden", Value = model?.Language_Code });
+        forms.Add(new FormField { LangCode = lang.Code, Name = $"BlogLanguages[{index}].LangId", Type = "hidden", Value = model?.LangId });
+        forms.Add(new FormField { LangCode = lang.Code, Name = $"BlogLanguages[{index}].BlogId", Type = "hidden", Value = model?.BlogId });
+
+
+        // Seo Form Update
+
+        formSeo.Add(new FormField { LangCode = lang.Code, Name = $"BlogLanguages[{index}].SeoTitle", Type = "text", Label = $"Seo Başlıq", Value = model?.SeoTitle });
+        formSeo.Add(new FormField { LangCode = lang.Code, Name = $"BlogLanguages[{index}].SeoKey", Type = "text", Label = $"Seo Key", Value = model?.SeoKey });
+        formSeo.Add(new FormField { LangCode = lang.Code, Name = $"BlogLanguages[{index}].SeoDesc", Type = "textarea", Label = $"Seo Izahat", Value = model?.SeoDesc });
+    }
+}
+
+
+
+
+<header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+    <div class="container-xl px-4">
+        <div class="page-header-content pt-4">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-auto mt-4">
+                    <h1 class="page-header-title">
+                        <span class="page-header-icon"><i data-feather="edit-3"></i></span>
+                        Yenile
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container-xl px-4 mt-n10">
+    <form id="fromloading" asp-action="Update" asp-antiforgery="true" enctype="multipart/form-data">
+        <div class="row">
+
+            <div class="col-lg-8">
+                <div class="card card-header-actions mb-4">
+                    <div class="card-header">
+                        Tercüme edilecek Sahələr
+                    </div>
+                    <div class="card-body">
+                        <language-tabs languages="languages" form-fields="forms" tab-id="blog"></language-tabs>
+                    </div>
+                </div>
+
+                <div class="card card-header-actions mb-4">
+                    <div class="card-header">
+                        Blog Seo İşləmləri
+                    </div>
+                    <div class="card-body">
+                        <language-tabs languages="languages" form-fields="formSeo" tab-id="blog-seo"></language-tabs>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-header">Blog</div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label" for="switchOne">Mevcut Şəkil</label>
+                            @if (Model!.FileCode != null)
+                            {
+                                <div class="my-2">
+                                    <img class="img-account-profile rounded-1 border border-dark w-100" src="~/@Model.FileCode">
+                                </div>
+                            }
+                            else
+                            {
+                                <p style="float: right;"><strong>Elavə olunmayib!</strong></p>
+                            }
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="file">Şəkil</label>
+                            <input name="file" class="form-control" type="file" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png, .svg">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="switchOne">Kategory</label>
+                            <select class="form-control" asp-for="CategoryId" asp-items="ViewBag.Categories">
+                                <option value="">Secin</option>
+                            </select>
+                            <span class="text-danger" asp-validation-for="CategoryId"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Tarix</label>
+                            <input type="date" class="form-control" asp-for="CreateDate">
+                            <span class="text-danger" asp-validation-for="CreateDate"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Saat</label>
+                            <input type="text" class="form-control" asp-for="Clock">
+                            <span class="text-danger" asp-validation-for="Clock"></span>
+                        </div>
+
+
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="FileCode" />
+                        <div class="bn">
+                            <button type="submit" class="btn  btn-primary">Yadda Saxla</button>
+                            <a asp-action="Index" class="btn  btn-dark">İmtina</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
+    <script>
+        var allEditors = document.querySelectorAll('.texteditor');
+        for (var i = 0; i < allEditors.length; ++i) {
+            ClassicEditor
+                .create(allEditors[i])
+                .then(editor => { })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+
+    </script>
+}
+
+

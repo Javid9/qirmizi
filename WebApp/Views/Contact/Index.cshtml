@@ -1,0 +1,195 @@
+﻿@using Domain.Dtos.AppConfig
+@using Domain.Dtos.Contact
+@model CreateContact
+@inject IAppConfigService AppConfig
+@{
+
+    var configResult = await AppConfig.GetConfigAsync();
+    var config = configResult.Data;
+    var lang = ViewBag.Lang ?? "az";
+
+}
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+}
+
+<section class="section-pdng contact-section">
+    <main class="container">
+        <nav class="crumbNav" style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb">
+
+                <li
+                    class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" asp-route-lang="@lang" >Əsas səhifə</a>
+                    </li>
+
+                <li class="breadcrumb-item active" aria-current="page">Əlaqə</li>
+            </ol>
+        </nav>
+        <p class="headerOrange">ƏLAQƏ</p>
+        <div class="contact-manifest d-flex flex-wrap justify-content-between">
+            <p class="heading mb-4 mb-lg-0">
+                BİZİMLƏ ƏLAQƏ SAXLAMAQ
+                İSTƏYİRSİNİZ?
+            </p>
+            <div class="social-list">
+                <p>Bizi sosial şəbəkələrdə izləyin</p>
+                <ul class="d-flex align-items-center justify-content-lg-end">
+
+                   @if(config?.Facebook != null)
+                    {
+                        <li>
+                            <a href="@config.Facebook">
+                                <img class="svg" src="/assets/img/icons/facebook-icons.svg" alt="facebook icon">
+                            </a>
+                        </li>
+                    }
+
+                   @if(config?.Instagram != null)
+                    {
+                        <li>
+                            <a href="@config.Instagram">
+                                <img class="svg" src="/assets/img/icons/instagram-icons.svg" alt="facebook icon">
+                            </a>
+                        </li>
+                    }
+
+                   @if(config?.Twitter != null)
+                    {
+                        <li>
+                            <a href="@config.Twitter">
+                                <img class="svg" src="/assets/img/icons/twitter-icons.svg" alt="facebook icon">
+                            </a>
+                        </li>
+                    }
+
+                   @if(config?.Linkedin != null)
+                    {
+                        <li>
+                            <a href="@config.Linkedin">
+                                <img class="svg" src="/assets/img/icons/linkedin-icons.svg" alt="facebook icon">
+                            </a>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </main>
+    <div class="contact-bottom">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-lg-3 g-4">
+                <div class="col" data-aos="fade-up"
+                     data-aos-easing="linear"
+                     data-aos-delay="250">
+                    <a href="tel:@config?.PhoneNumber" class="info-card d-block">
+                        <div class="d-flex justify-content-between header align-items-center">
+                            <p>Telefon nömrəmiz</p>
+                            <span class="icon">
+                                <img src="/assets/img/icons/phone-icons.svg" alt="">
+                            </span>
+                        </div>
+                        <p class="info-value">@config?.PhoneNumber</p>
+                    </a>
+                </div>
+                <div class="col" data-aos="fade-up"
+                     data-aos-easing="linear"
+                     data-aos-delay="500">
+                    <a href="mailto:@config?.Email" class="info-card d-block">
+                        <div class="d-flex justify-content-between header align-items-center">
+                            <p>E-poçt ünvanımız</p>
+                            <span class="icon">
+                                <img src="/assets/img/icons/email-icons.svg" alt="">
+                            </span>
+                        </div>
+                        <p class="info-value">@config?.Email</p>
+                    </a>
+                </div>
+                <div class="col" data-aos="fade-up"
+                     data-aos-easing="linear"
+                     data-aos-delay="750">
+                    <div class="info-card">
+                        <div class="d-flex justify-content-between header align-items-center">
+                            <p>Ünvanımız</p>
+                            <span class="icon">
+                                <img src="/assets/img/icons/location-icons.svg" alt="">
+                            </span>
+                        </div>
+                        <p class="info-value">@config?.Address</p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-content">
+                <div class="row g-4">
+                    <div class="col-lg-4">
+                        <div class="header">
+                            <p class="heading" data-aos="fade-right"
+                               data-aos-easing="linear">
+                                BİZƏ MESAJ DA
+                                YAZA BİLƏRSİNİZ
+                            </p>
+                            <p class="texting" data-aos="fade-right"
+                               data-aos-easing="linear">Mesaja baxıldıqdan sonra sizə cavab veriləcək</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 offset-lg-2">
+                        <form asp-action="SendMessage" asp-controller="Contact" asp-route-lang="@lang" asp-antiforgery="true" class="row g-4 contact-form">
+                            <div class="col-lg-6 position-relative">
+                                <input type="text" class="form-control" asp-for="@Model.FullName" placeholder="Adınız və Soyadınız">
+                                <span class="text-danger" asp-validation-for="FullName"></span>
+                            </div>
+                            <div class="col-lg-6 position-relative">
+                                <input type="text" class="form-control" asp-for="@Model.Email" placeholder="E-poçt ünvanı*">
+                                <span class="text-danger" asp-validation-for="Email"></span>
+                            </div>
+                            <div class="col-lg-6 position-relative">
+                                <input type="text" class="form-control" asp-for="@Model.Phone" placeholder="Telefon">
+                                <span class="text-danger" asp-validation-for="Phone"></span>
+                            </div>
+                            <div class="col-lg-6 position-relative">
+                                <select asp-for="Subject" class="form-select form-control">
+                                    <option selected="">Mövzu</option>
+                                    <option value="Value">Value 1</option>
+                                    <option value="Value 2">Value 2</option>
+                                    <option value="Value 3">Value 3</option>
+                                </select>
+                                <span asp-validation-for="Subject" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control area" asp-for="@Model.Message" placeholder="Mesajınız"></textarea>
+                                <span class="text-danger" asp-validation-for="Message"></span>
+                            </div>
+                            <div class="col-lg-12">
+                                <button class="btn btn-send ms-auto">
+                                    GÖNDƏR
+                                    <img class="svg ms-2" src="/assets/img/icons/send-icon.svg" alt="">
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="circles circle-left d-none d-lg-block"></div>
+        <div class="circles circle-right d-none d-lg-block"></div>
+        <div class="square-box d-none d-lg-block"></div>
+    </div>
+</section>
+
+
+@section Plugins {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+}
+
+@section Scripts {
+    <script src="~/content/js/toasts.js"></script>
+    <script>
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <text>
+                toastr.error("@TempData["ErrorMessage"]");
+            </text>
+        }
+    </script>
+}

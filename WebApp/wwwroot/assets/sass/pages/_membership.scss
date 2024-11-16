@@ -1,0 +1,323 @@
+.membership-section {
+    position: relative;
+    @include margin-bottom(90px);
+
+    .membership-content {
+        .header {
+            @include margin-bottom(60px);
+
+            h2 {
+                @include font-size(40px);
+                color: #140A6A;
+                margin-bottom: 20px;
+            }
+
+            .header-bottom {
+                font-weight: 300;
+                font-size: 20px;
+                color: #140A6A;
+
+                a {
+                    font-weight: 500;
+                    color: #140A6A;
+                    @extend %transition3;
+
+                    &:hover {
+                        transform: scale(1.05);
+                    }
+
+                    i {
+                        @include font-size(30px)
+                    }
+                }
+            }
+        }
+
+        form {
+            .form-box {
+                position: relative;
+                margin-bottom: 24px;
+                
+                .icon {
+                    position: absolute;
+                    left: 25px;
+                    top: 19px;
+                    width: 20px;
+                    height: 20px;
+                }
+                .see-paswword{
+                    position: absolute;
+                    right: 22px;
+                    top: 22px;
+                    cursor: pointer;
+                    &:hover{
+                        i{
+                            color: #140A6A;
+                        }
+                    }
+                    i{
+                        @extend %transition3;
+                        color: #CACACA;
+                        font-size: 20px;
+                    }
+                }
+
+                .form-control {
+                    padding-left: 55px;
+                    height: 60px;
+                    color: #140A6A;
+                    font-size: 17px;
+
+                    &::placeholder {
+                        font-size: 17px;
+                    }
+                }
+                .numbersing{
+                    text-align: center;
+                    padding: 0px;
+                }
+
+            }
+
+            .form-check-input {
+                width: 25px;
+                height: 25px;
+                border-radius: 0px;
+                cursor: pointer;
+                margin-top: 0px;
+                border: 1px solid #140A6A;
+                &:focus {
+                    border-color: transparent;
+                }
+
+                &:checked {
+                    background-color: #140A6A;
+                    box-shadow: none;
+                }
+            }
+
+            .form-check-label {
+                color: #140A6A;
+                cursor: pointer;
+            }
+
+            .check-register-label {
+                font-size: 15px;
+
+                .btn {
+                    padding: 0px;
+                    font-weight: 600;
+                    color: #FC5816;
+                }
+            }
+
+            .forgotPassword-link {
+                color: #140A6A;
+            }
+
+            .btn-login-send {
+                width: 100%;
+                @extend %transition3;
+                margin-top: 40px;
+            }
+            .code-body{
+                margin-top: 20px;
+                p{
+                    strong{
+                        min-width: 40px;
+                        display: inline-block;
+                        font-weight: 600;
+                    }
+                }
+                .btn{
+                    padding: 0px;
+                    font-weight: 600;
+                    &:hover{
+                        color: #FC5816;
+                    }
+                }
+            }
+        }
+
+        .and-or {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            @include padding(44px 0 35px);
+
+            &::before {
+                content: '';
+                width: 100%;
+                height: 1px;
+                display: block;
+                background-color: #140A6A;
+            }
+
+            p {
+                color: #140A6A;
+                min-width: fit-content;
+                margin: 0 20px;
+            }
+
+            &::after {
+                content: '';
+                width: 100%;
+                height: 1px;
+                background-color: #140A6A;
+            }
+        }
+
+        .social-buttons {
+            .btn {
+                padding: 20px 30px;
+                font-weight: 600;
+                color: #140A6A;
+                border: 1px solid #CACACA;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 0px;
+                @extend %transition3;
+
+                &:hover {
+                    background-color: #140A6A;
+                    color: #fff;
+                }
+
+                &:first-child {
+                    margin-bottom: 15px;
+                }
+            }
+        }
+
+        .register-social-buttons {
+            .btn {
+                &:first-child {
+                    margin-bottom: 0px;
+                }
+            }
+        }
+
+        .info-card{
+            @include margin-top(100px);
+            padding: 30px 20px;
+            background-color: rgba(20, 10, 106, 0.10);
+            color: #140A6A;
+            line-height: 24px;
+        }
+    }
+
+    .password-image,
+    .membership-image {
+        width: 100%;
+        margin-left: auto;
+        height: 687px;
+        position: relative;
+        @include mobile-l {
+            height: 450px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .box {
+            width: 60px;
+            height: 60px;
+            transform: rotate(-135deg);
+            background-color: #FC5816;
+            position: absolute;
+            right: 70px;
+            bottom: -40px;
+        }
+    }
+
+    .password-image{
+        .box{
+            left: 55px;
+        }
+    }
+
+    .circle-left {
+        width: 400px;
+        height: 400px;
+        left: -45%;
+        top: 252px;   
+        transform: translate(-50%, 50%);
+        background-color: #4539C9;
+        @include circles-left;
+    }
+
+    .circle-right {
+        width: 400px;
+        height: 400px;
+        right: -15%;
+        top: 252px;
+        transform: translate(50%, 50%);
+        background-color: #FC5816;
+        @include circles-right;
+    }
+
+    .box-left{
+        width: 30px;
+        height: 30px;
+        top: 300px;
+        left: 150px;
+        background-color: #4539C9;
+        transform: rotate(15deg);
+        @include squareboxleft;
+    }
+
+    .register-box-bottom{
+        right: 60px;
+        bottom: -80px;
+        background-color: #FC5816;
+        transform: rotate(35deg);
+    }
+}
+
+
+#privacyRegister{
+    .modal-dialog{
+        .modal-content{
+            .modal-header{
+                .modal-title{
+                    font-weight: 600;
+                    text-align: center;
+                    width: 100%;
+                    font-size: 25px !important;
+                }
+                .btn-close{
+                    margin-right: 10px;
+                    &:focus{
+                        box-shadow: none;
+                    }
+                }
+            }
+            .modal-body{
+                .content{
+                    @include padding(20px 35px);
+                    p{
+                        font-weight: 400;
+                        margin-bottom: 5px;
+                        font-weight: 500;
+                        margin-bottom: 20px;
+                        font-size: 15px;
+                    }
+                    ul{
+                        list-style: disc;
+                        li{
+                            font-size: 15px;
+                            font-weight: 500;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,59 @@
+﻿@using Domain.Dtos.Event
+@model List<EventDto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+    <div class="container-xl px-4">
+        <div class="page-header-content pt-4">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-auto mt-4">
+                    <h1 class="page-header-title">
+                        <span class="page-header-icon"><i data-feather="filter"></i></span>
+                       Event
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container-xl px-4 mt-n10">
+    <div class="card card-header-actions mb-4">
+        <div class="card-header">
+            Event Listesi
+            <div class="rid">
+                <a asp-area="Cms" asp-action="Create" asp-controller="Event" class="btn btn-sm btn-primary">Event elave et</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>Şekil</th>
+                        <th>Basliq</th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="~/@item.FileCode" style="width: 50px;height: 50px;object-fit: cover;border-radius: 10px;filter: drop-shadow(20px);filter: drop-shadow(3px 3px 4px #000);display: block;margin-left: auto;margin-right: auto;" />
+                            </td>
+                            <td>@item.Title</td>
+                            <td>
+                                <a asp-action="Index" asp-controller="photo" asp-area="cms" asp-route-productId="@item?.Id" class="btn btn-datatable btn-icon btn-transparent-dark me-2"><i data-feather="image"></i></a>
+                                <a asp-action="Update" asp-route-id="@item!.Id" class="btn btn-datatable btn-icon btn-transparent-dark me-2"><i data-feather="more-vertical"></i></a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete it?')" class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="trash-2"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,105 @@
+﻿@using Domain.Dtos.Category
+@model CreateCategoryDto
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+@{
+    var languages = (await languageService.GetAllLangAsync()).Data.Select(x => new { Code = x.Code, Name = x.Name }).ToList();
+
+    var forms = new List<FormField>();
+    var formSeo = new List<FormField>();
+
+    for (int index = 0; index < languages.Count; index++)
+    {
+        var lang = languages[index];
+        forms.Add(new FormField { LangCode = lang.Code, Name = $"CategoryLanguages[{index}].Title", Type = "text", Label = $"Basliq", Value = string.Empty });
+        forms.Add(new FormField { LangCode = lang.Code, Name = $"CategoryLanguages[{index}].Language_Code", Type = "hidden", Value = lang.Code });
+
+        // Seo Form Add
+
+        formSeo.Add(new FormField { LangCode = lang.Code, Name = $"CategoryLanguages[{index}].SeoTitle", Type = "text", Label = $"Seo Başlıq", Value = string.Empty });
+        formSeo.Add(new FormField { LangCode = lang.Code, Name = $"CategoryLanguages[{index}].SeoKey", Type = "text", Label = $"Seo Key", Value = string.Empty });
+        formSeo.Add(new FormField { LangCode = lang.Code, Name = $"CategoryLanguages[{index}].SeoDesc", Type = "textarea", Label = $"Seo Izahat", Value = string.Empty });
+    }
+}
+
+
+<header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+    <div class="container-xl px-4">
+        <div class="page-header-content pt-4">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-auto mt-4">
+                    <h1 class="page-header-title">
+                        <span class="page-header-icon"><i data-feather="edit-3"></i></span>
+                        Category
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container-xl px-4 mt-n10">
+    <form id="fromloading" asp-action="Create" asp-antiforgery="true" enctype="multipart/form-data">
+        <div class="row">
+
+
+            <div class="col-lg-8">
+                <div class="card card-header-actions mb-4">
+                    <div class="card-header">
+                        Tercüme edilecek sahələr
+                    </div>
+                    <div class="card-body">
+                        <language-tabs languages="languages" form-fields="forms" tab-id="category"></language-tabs>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-header">Category</div>
+                    <div class="card-body">
+                       
+
+                        <div class="bn">
+                            <button type="submit" class="btn  btn-primary">Yadda saxla</button>
+                            <a asp-action="Index" class="btn  btn-dark">Imtina</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-8">
+                <div class="card card-header-actions mb-4">
+                    <div class="card-header">
+                        Category Seo İşləmləri
+                    </div>
+                    <div class="card-body">
+                        <language-tabs languages="languages" form-fields="formSeo" tab-id="category-seo"></language-tabs>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
+    <script>
+        var allEditors = document.querySelectorAll('.texteditor');
+        for (var i = 0; i < allEditors.length; ++i) {
+            ClassicEditor
+                .create(allEditors[i])
+                .then(editor => { })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    </script>
+}
+

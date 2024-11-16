@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="language" content="az" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <title>Qırmızı Web</title>
+     <partial name="_StyleSheetPartial" />
+    @await RenderSectionAsync("Styles", false)
+    <link rel="stylesheet" href="/assets/css/style.min.css" asp-append-version="true" />
+</head>
+<body>
+
+    <partial name="_Header" />
+
+    @RenderBody()
+
+    <partial name="_Footer" />
+
+    <partial name="_ScriptsPartial" />
+
+    @await RenderSectionAsync("Plugins", false)
+
+    <script src="/assets/js/style.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", false)
+
+    @await RenderSectionAsync("_ValidationScriptsPartial", false)
+
+</body>
+</html>

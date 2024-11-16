@@ -1,0 +1,125 @@
+﻿@using Domain.Dtos.User
+@model RegisterUserDto
+
+<section class="section-pdng membership-section">
+    <main class="container z-2 position-relative">
+        <div class="col-lg-10 col-lg-9 col-xxl-8 mx-auto">
+            <div class="membership-content">
+                <div class="header">
+                    <h2 class="text-center">Qeydiyyatdan keçin</h2>
+                    <div class="d-flex flex-column flex-xl-row align-items-xl-center justify-content-center header-bottom">
+                        <p class="me-3">Hesabınız var?</p>
+                        <a href="login.html" class="register-link d-flex align-items-center mt-3 mt-xl-0">
+                            Daxil olun
+                            <i class="bi bi-arrow-right-short ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <form class="row" asp-action="Register" method="post" asp-antiforgery="true">
+                    <div class="col-lg-6">
+                        <div class="form-box">
+                            <img class="svg icon" src="/assets/img/icons/user-icon.svg" alt="">
+                            <input type="text" class="form-control" asp-for="Name" placeholder="Ad">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-box">
+                            <img class="svg icon" src="/assets/img/icons/user-icon.svg" alt="">
+                            <input type="text" class="form-control" asp-for="Surname" placeholder="Soyad">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-box">
+                            <img class="svg icon" src="/assets/img/icons/email-icon.svg" alt="">
+                            <input type="email" class="form-control" asp-for="Email" placeholder="E-poçt ünvanı">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-box">
+                            <img class="svg icon" src="/assets/img/icons/phone-icon.svg" alt="">
+                            <input type="phone" class="form-control" asp-for="PhoneNumber" placeholder="Telefon">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-box">
+                            <img class="svg icon" src="/assets/img/icons/unlock-icon.svg" alt="">
+                            <input type="password" class="form-control" asp-for="Password" placeholder="Şifrə">
+                            <span class="see-paswword">
+                                <i class="bi bi-eye-fill"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-box">
+                            <img class="svg icon" src="/assets/img/icons/unlock-icon.svg" alt="">
+                            <input type="password" class="form-control" asp-for="ConfirmPassword" placeholder="Şifrənin təkrarı">
+                            <span class="see-paswword">
+                                <i class="bi bi-eye-fill"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-8 mx-auto mt-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <input class="form-check-input me-2" type="checkbox" asp-for="AcceptsTerms" id="remember">
+                                <label class="form-check-label check-register-label">
+                                    Qeydiyyatdan keçməklə <button type="button" class="btn" data-bs-toggle="modal"
+                                                                  data-bs-target="#privacyRegister">
+                                        Qaydaları
+                                    </button> qəbul etmiş
+                                    olursunuz
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-8 mx-auto">
+                        <button type="submit"
+                                class="btn btn-send btn-login-send d-flex align-items-center justify-content-center">
+                            QEYDİYYATDAN KEÇ
+                            <img class="svg ms-3" src="/assets/img/icons/send-arrow.svg" alt="">
+                        </button>
+                    </div>
+                </form>
+                <div class="and-or">
+                    <p>və ya</p>
+                </div>
+                <div class="d-flex flex-column flex-lg-row gap-4 social-buttons register-social-buttons">
+                    <button type="button" class="btn btn-login-social">
+                        <img class="svg me-3" src="/assets/img/icons/google-icon.svg" alt="">
+                        GOOGLE HESABI İLƏ DAXİL OL
+                    </button>
+                    <button type="button" class="btn btn-login-social">
+                        <img class="svg me-3" src="/assets/img/icons/facebook-icon.svg" alt="">
+                        FACEBOOK HESABI İLƏ DAXİL OL
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="circles circle-left d-none d-lg-block"></div>
+    <div class="circles circle-right d-none d-lg-block"></div>
+    <div class="mini-box box-left d-none d-lg-block"></div>
+    <div class="mini-box register-box-bottom d-none d-lg-block"></div>
+</section>
+
+<div class="modal fade" id="privacyRegister" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Qaydalar</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="content">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, cumque unde? Et hic
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

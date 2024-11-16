@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300..900&display=swap');
+
+
+@import "base/mixin";
+@import "base/media";
+@import "base/mixin";
+@import "base/animation";
+@import "base/extend";
+@import "base/global"; 
+
+
+/*components*/
+@import "components/rfs";
+@import "components/navbar-menu";
+@import "components/footer";
+
+
+/*elements*/
+@import "elements/element";
+@import "elements/card";
+
+/*page*/
+@import "pages/home";
+@import "pages/about";
+@import "pages/alaqa";
+@import "pages/blog";
+@import "pages/speaker";
+@import "pages/tedbirler";
+@import "pages/eventdetail";
+@import "pages/membership";
+@import "pages/profil";
+@import "pages/payment";

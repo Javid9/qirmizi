@@ -1,0 +1,387 @@
+.event-detail-section {
+    .detail-header {
+        height: 1080px;
+        position: relative;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        
+        @include desktop-l{
+            height: 977px;
+        }
+        @include desktop-sm{
+            height: fit-content;
+            padding-bottom: 42px;
+        }
+        @include mobile-display{
+            height: fit-content;
+            padding-bottom: 42px;
+
+        }
+        
+        &::before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(20, 10, 106, 0.60) 0%, rgba(24, 13, 130, 0.24) 40%, rgba(39, 20, 208, 0.00) 100%);
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            @include mobile-l{
+                background: linear-gradient(180deg, rgba(20, 10, 106, 0.70) 0%, rgba(24, 13, 130, 0.44) 40%, rgba(39, 20, 208, 0.00) 100%);
+            }
+        }
+
+        &::after {
+            content: '';
+            width: 50%;
+            height: 100%;
+            position: absolute;
+            left: 0px;
+            top: 0;
+            background-color: red;
+            clip-path: polygon(0% 0%, 100% 0%, 95.56% 50%, 78.89% 100%, 0% 100%);
+            background: rgba(20, 10, 106, 0.70);
+            backdrop-filter: blur(5px);
+            animation: expandWidth 1.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) forwards;
+            @include mobile-display{
+                width: 100%;
+            }
+            @include mobile-l{
+                display: none;
+            }
+        }
+        @keyframes expandWidth {
+            from {
+              width: 0;
+              opacity: 0;
+            }
+            to {
+              width: 50%; /* İstediğiniz genişliğe kadar açılır */
+              opacity: 1;
+            }
+          }
+        .content {
+            position: relative;
+            z-index: 2;
+            max-width: 45%;
+            padding-top: 215px;
+            @include desktop-sm{
+                padding-top: 150px;
+            }
+            @include mobile-display{
+                padding-top: 100px;
+                max-width: 100%;
+            }
+            .event-info {
+                .subject {
+                    color: #FC5816;
+                    @include font-size(20px);
+                    font-weight: 600;
+                }
+
+                .title {
+                    @include font-size(48px);
+                    color: #fff;
+                    @include padding(30px 0);
+                }
+
+                .speaker-name {
+                    color: #fff;
+                    font-size: 20px;
+                }
+            }
+
+            .event-bottom {
+                margin-top: 120px;
+                @include mobile-display{
+                    margin-top: 10px;
+                }
+                .date {
+                    color: #fff;
+                    font-weight: 300;
+
+                    strong {
+                        font-weight: 600;
+                    }
+                }
+                .price{
+                    color: #fff;
+                    margin: 20px 0;
+                    font-size: 18px;
+                }
+                .location {
+                    color: #fff;
+                  
+                }
+                .packets{
+                    color: #fff;
+                    margin-bottom: 20px;
+                }
+                .btn-ticket-sale {
+                    border: 1px solid #12A5D6;
+                    border-radius: 0px;
+                    padding: 20px 30px;
+                    color: #fff;
+                    margin-top: 60px;
+                    &:hover{
+                        background-color: #12A5D6;
+                    }
+                    @include mobile-l{
+                        background-color: #12A5D6;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.event-map-section {
+    position: relative;
+    @include padding(140px 0);
+
+    .left-info {
+        p {
+            color: #140A6A;
+
+            &:first-child {
+                font-weight: 600;
+            }
+
+            &:last-child {
+                line-height: 24px;
+            }
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            @include font-size(48px);
+            font-weight: 300;
+            @include margin(50px 0 70px);
+            color: #140A6A;
+        }
+    }
+
+    .right-map {
+        width: 440px;
+        height: 500px;
+        position: relative;
+        margin-bottom: 20px;
+        margin-left: auto;
+        display: block;
+        @include mobile-display{
+            margin-right: auto;
+            height: 350px;
+            margin-top: 40px;
+        }
+        @include mobile-l{
+            width: 350px;
+        }
+        &::before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            background-color: #4539C9;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            clip-path: polygon(15% 0, 100% 0%, 85% 100%, 0% 100%);
+        }
+
+        iframe {
+           
+            height: 100%;
+            object-fit: cover;
+            z-index: 2;
+            position: relative;
+    
+            clip-path: polygon(15% 0, 100% 0%, 85% 100%, 0% 100%);
+       
+         
+        }
+    }
+
+    .circle-left {
+        width: 500px;
+        height: 500px;
+        background-color: #4539C9;
+        left: -350px;
+        top: 91px;
+        @include circles-left;
+    }
+}
+
+.event-speaker-section{
+    background-color: #4539C9;
+    position: relative;
+    min-height: 565px;
+    padding: 70px 0;
+    .header{
+        max-width: 50%;
+        margin-bottom: 30px;
+        @include mobile-display{
+            margin-bottom: 50px;
+        }
+        p {
+            color: #FC5816;
+            font-weight: 600;
+        }
+
+        h2 {
+            @include font-size(40px);
+            font-weight: 500;
+            color: #fff;
+            margin-top: 20px;
+            white-space: pre-line;
+        }
+    }
+    .speaker-event-card {
+        position: relative;
+        z-index: 3;
+        margin-bottom: 70px;
+        @include mobile-display{
+            height: inherit;
+            padding-bottom: 55px;
+        }
+
+        .speaker {
+            .name {
+                color: #fff;
+                font-weight: 600;
+                @include font-size(20px);
+                margin-bottom: 10px;
+            }
+
+            .status {
+                color: #fff;
+            }
+
+            .info-text {
+                min-height: 117px;
+                font-weight: 300;
+                color: #fff;
+                line-height: 24px;
+                margin-top: 20px;
+            }
+        }
+
+        .speaker-photo {
+            .speaker-photo-content{
+                width: 260px;
+                height: 260px;
+                position: relative;
+                margin-left: auto;
+                @include mobile-display{
+                    margin-right: auto;
+                }
+                .img {
+                    width: 260px;
+                    height: 260px;
+                    border-radius: 100%;
+                }
+    
+                .social-list {
+                    max-width: 75%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    background: rgba(255, 255, 255, 0.50);
+                    backdrop-filter: blur(5px);
+                    padding: 16px 28px;
+                    position: relative;
+                    top: -25px;
+                    @extend %transition3;
+    
+                    li {
+                        &:hover {
+                            a {
+                                transform: scale(1.2);
+                            }
+                        }
+    
+                        a {
+                            position: relative;
+                            display: block;
+                            @extend %transition3;
+    
+                            &::before {
+                                content: '';
+                                width: 5px;
+                                height: 5px;
+                                position: absolute;
+                                left: 50%;
+                                bottom: -10px;
+                                transform: translate(-50%, 0%);
+                                background-color: #fff;
+                                border-radius: 100%;
+                                opacity: 0;
+                                @extend %transition3;
+                            }
+    
+                            &:hover {
+                                &::before {
+                                    opacity: 1;
+                                }
+                            }
+    
+                            .svg path {
+                                fill: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+      
+        }
+    }
+    .circles-left {
+        width: 350px;
+        height: 350px;
+        background-color: #FC5816;
+        opacity: 0.5;
+        transform: translate(-50%, -50%);
+        left: 0;
+        top: 50%;
+        z-index: 1;
+        @include desktop-sm{
+            display: none !important;
+        }
+    }
+    .box-top{
+        width: 100px;
+        height: 100px;
+        transform: rotate(-15deg);
+        background: var(--Second-color, #FC5816);
+        filter: blur(5px);
+        position: absolute;
+        right: 36%;
+        top: -50px;
+        
+    }
+}
+
+.partner-section{
+    @include padding(70px 0 140px);
+    .heading{
+        font-weight: 600;
+        color: #140A6A;
+        font-size: 25px;
+    }
+    .logo-list{
+        margin-top: 10px;
+        .logo{
+            width: fit-content;
+            img{
+                height: 75px;
+                object-fit: contain;
+            }
+        }
+    }
+}

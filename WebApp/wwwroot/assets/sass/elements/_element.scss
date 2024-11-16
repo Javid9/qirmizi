@@ -1,0 +1,202 @@
+.crumbNav {
+    margin-bottom: 25px;
+
+    .breadcrumb {
+        li {
+            font-size: 16px;
+            color: #fff;
+            font-weight: 600;
+
+            &:before {
+                color: #fff;
+            }
+
+            a {
+                color: #fff;
+                opacity: 0.8;
+                @extend %transition3;
+
+                &:hover {
+                    color: #FC5816;
+                }
+            }
+        }
+    }
+}
+
+.headerOrange {
+    font-size: 17px;
+    font-weight: 600;
+    color: #FC5816;
+}
+
+.circles {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    filter: blur(100px);
+    opacity: 0.2;
+    z-index: -1;
+}
+
+.mini-box {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+}
+
+.btn-load-more {
+    font-weight: 600;
+    color: #fff;
+    position: relative;
+    padding: 20px 30px;
+    line-height: normal;
+    border: 1px solid #fff;
+    border-radius: 0;
+    font-size: 17px;
+    @extend %transition3;
+    margin-top: 70px;
+
+    &:hover {
+        background-color: #FC5816;
+        color: #fff;
+    }
+
+    .arrow {
+        width: 20px;
+        height: 20px;
+        transform: translate(-50%, 0) rotate(135deg);
+        position: absolute;
+        left: 50%;
+        bottom: -40px;
+
+        & path {
+            fill: #FC5816;
+        }
+    }
+}
+
+form {
+
+    .form-select,
+    .form-control {
+        height: 60px;
+        border-radius: 0px;
+        border: 1px solid #CACACA;
+        padding-left: 30px;
+        font-weight: 500;
+        font-size: 17px;
+        @extend %transition3;
+
+        &:focus {
+            border-color: #FC5816;
+            color: #140A6A;
+            box-shadow: none;
+            outline: none;
+        }
+
+        &::placeholder {
+            font-size: 17px;
+            font-weight: 500;
+        }
+    }
+
+    .form-select {
+        font-variant-numeric: lining-nums proportional-nums;
+        cursor: pointer;
+        option{
+            font-family: 'Poppins', sans-serif;
+            font-variant-numeric: lining-nums proportional-nums;
+        }
+    }
+
+    .area {
+        resize: none;
+        min-height: 150px;
+    }
+
+    .btn-send {
+        border: 1px solid #FC5816;
+        padding: 20px 30px;
+        color: #FC5816;
+        font-weight: 600;
+        border-radius: 0px;
+        display: flex;
+        align-items: center;
+        @extend %transition3;
+
+        .svg path {
+            @extend %transition3;
+        }
+
+        &:hover {
+            background-color: #FC5816;
+            color: #fff;
+
+            .svg path {
+                fill: #fff;
+            }
+        }
+    }
+}
+
+
+
+.frameModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    @include menu;
+
+    .frame-content {
+        position: relative;
+        width: 80%;
+        max-width: 900px;
+        aspect-ratio: 16/9;
+        background-color: #000;
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    }
+
+    .btn-frame-exit {
+        position: absolute;
+        right: 25px;
+        top: 25px;
+
+        i {
+            @include font-size(30px);
+            color: #fff;
+
+            &::before {
+                font-weight: 900 !important;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .frame-content {
+            width: 100%;
+        }
+    }
+}
+
+
+
+.aos-bounce-in{
+    opacity: 0;
+}
+
+  .aos-bounce-in.aos-animate {
+    @include squareboxleft2;
+  }

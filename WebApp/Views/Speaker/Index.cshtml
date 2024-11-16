@@ -1,0 +1,112 @@
+﻿@using Domain.Dtos.Speaker
+@model List<SpeakerClientDto>
+
+@{
+    var lang = ViewBag.Lang ?? "az";
+}
+
+<section class="section-pdng speaker-section">
+    <main class="container z-2 position-relative">
+        <header class="header d-flex flex-wrap align-items-end justify-content-between">
+            <div class="left">
+                <nav class="crumbNav" style="--bs-breadcrumb-divider: '>';">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a asp-action="Index" asp-controller="Home" asp-route-lang="@lang">Əsas səhifə</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Spikerlər</li>
+                    </ol>
+                </nav>
+                <p class="headerOrange">TƏDBİRLƏRİN SPİKERLƏRİ</p>
+                <p class="pageName">SPİKERLƏR</p>
+                <p class="header-text">Spikerlərimiz haqqında qısa məlumatlarla tanış olun</p>
+            </div>
+            <div class="input-group" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="250">
+                <input type="text" id="searchKeyInput" class="form-control" placeholder="Axtarış et">
+                <button type="button" id="searchButtonSpeaker" class="btn d-flex align-items-center justify-content-center">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </header>
+
+        <div id="cardList" class="speaker-card-list">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-5 card-content">
+                @foreach (var speaker in Model)
+                {
+                    <div class="col">
+                        <div class="speaker-card">
+                            <div class="speaker-top">
+                                <img class="speaker-image" src="~/@speaker.FileCode" alt="">
+                                <ul class="social-list d-flex align-items-center justify-content-between">
+                                    @if (speaker.Facebook is not null)
+                                    {
+                                        <li>
+                                            <a href="@speaker.Facebook" target="_blank">
+                                                <figure>
+                                                    <img class="svg" src="/assets/img/icons/facebook-icons.svg" alt="facebook icon">
+                                                </figure>
+                                            </a>
+                                        </li>
+                                    }
+                                    @if (speaker.Instagram is not null)
+                                    {
+                                        <li>
+                                            <a href="@speaker.Instagram" target="_blank">
+                                                <figure>
+                                                    <img class="svg" src="/assets/img/icons/instagram-icons.svg" alt="instagram icon">
+                                                </figure>
+                                            </a>
+                                        </li>
+                                    }
+                                    @if (speaker.Twitter is not null)
+                                    {
+                                        <li>
+                                            <a href="@speaker.Twitter" target="_blank">
+                                                <figure>
+                                                    <img class="svg" src="/assets/img/icons/twitter-icons.svg" alt="twitter icon">
+                                                </figure>
+                                            </a>
+                                        </li>
+                                    }
+                                    @if (speaker.LinkedIn is not null)
+                                    {
+                                        <li>
+                                            <a href="@speaker.LinkedIn" target="_blank">
+                                                <figure>
+                                                    <img class="svg" src="/assets/img/icons/linkedin-icons.svg" alt="linkedin icon">
+                                                </figure>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                                <div class="square-gruop">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="speaker-info text-center">
+                                <p class="name">@speaker.FullName</p>
+                                <p class="status">@speaker.Postion</p>
+                                <article class="texting">
+                                    @Html.Raw(@speaker.Text)
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="loading d-none">
+                <div class="spinner-border text-light" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="circles circle-left d-none d-lg-block"></div>
+    <div class="mini-box mini-box-right d-none d-lg-block"></div>
+</section>
+
+@section Plugins {
+    <script src="/assets/js/request.js"></script>
+}

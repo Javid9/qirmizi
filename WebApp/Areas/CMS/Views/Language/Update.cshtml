@@ -1,0 +1,54 @@
+﻿@using Domain.Dtos.Language;
+@model LanguageDto
+
+@{
+    ViewData["Title"] = "Update";
+}
+<header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+    <div class="container-xl px-4">
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <div class="page-header-content pt-4">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-auto mt-4">
+                            <h1 class="page-header-title">
+                                <span class="page-header-icon"><i data-feather="edit-3"></i></span>
+                                Dil Güncelle
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container-xl px-4 mt-n10">
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <div class="card card-header-actions mb-4">
+                <div class="card-header">
+                    <a asp-action="Index" class="btn btn-sm btn-primary">Geri Git</a>
+                </div>
+                <div class="card-body">
+                    <form id="fromloading" asp-action="Update" asp-antiforgery="true">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group mb-3">
+                            <label class="form-label" asp-for="Name">Dil Adı</label>
+                            <input type="text" class="form-control" asp-for="Name">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label" asp-for="Code">Dil Kodu</label>
+                            <input type="text" class="form-control" asp-for="Code">
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn w-100 btn-primary">Kaydet</button>
+                            <a asp-action="Index" class="btn w-100 btn-link text-muted mt-2">İmtina etmək</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

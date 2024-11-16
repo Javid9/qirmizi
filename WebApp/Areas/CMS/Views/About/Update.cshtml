@@ -1,0 +1,117 @@
+﻿@using Domain.Dtos.About
+@model UpdateAboutDto
+@{
+    ViewData["Title"] = "Create";
+    var categories = ViewBag.Categories;
+}
+
+
+<header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+    <div class="container-xl px-4">
+        <div class="page-header-content pt-4">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-auto mt-4">
+                    <h1 class="page-header-title">
+                        <span class="page-header-icon"><i data-feather="edit-3"></i></span>
+                        Haqqimizda
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container-xl px-4 mt-n10">
+    <form id="fromloading" asp-action="Update" asp-antiforgery="true" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-header">Haqqimzida</div>
+                    <div class="card-body">
+
+                        <div class="mb-3">
+                            <div class="card border border-blue">
+                                <div class="card-header">
+                                    <span>Faq ozellikleri</span>
+                                </div>
+                                <div class="card-body panel-add">
+                                    @{
+                                        int count = 0;
+                                    }
+                                    @foreach (var feature in Model.FaqFeatures!)
+                                    {
+                                        <input type="hidden" asp-for="FaqFeatures![count]!.Id!" value="@feature.Id" />
+                                        <input type="hidden" asp-for="FaqFeatures![count]!.AboutId!" value="@feature.AboutId" />
+
+
+                                        <div class="row gy-2 gx-3 align-items-end">
+                                            <div class="col-4 mb-3">
+                                                <label class="form-label">Sual</label>
+                                                <input class="form-control" asp-for="FaqFeatures![count].Question" value="@feature.Question" />
+                                            </div>
+                                            <div class="col-4 mb-3">
+                                                <label class="form-label">Value</label>
+                                                <input class="form-control" asp-for="FaqFeatures![count].Answer" value="@feature.Answer" />
+                                            </div>
+                                            <div class="col-4 mb-3">
+                                                <button type="button" class="btn btn-success-soft add-feature">Update</button>
+                                            </div>
+                                        </div>
+
+                                        count++;
+
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="bn">
+                            <button type="submit" class="btn  btn-primary">Əlavə Et</button>
+                            <a asp-action="Index" class="btn  btn-dark">İmtina</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    <script>
+        $(document).on('click', '.add-feature', function () {
+            let count = $('.panel-add .row').length;
+            let panel = ` <div class="row gy-2 gx-3 align-items-end ">
+                                                                                        <div class="col-4 mb-3">
+                                                                                            <label class="form-label">Sual</label>
+                                                                                                                                            <input class="form-control" name="FaqFeatures[${count}].Question" id="FaqFeatures[${count}].Question" />
+                                                                                        </div>
+                                                                                        <div class="col-4 mb-3">
+                                                                                            <label class="form-label">Cavab</label>
+                                                                                                                                            <input class="form-control" name="FaqFeatures[${count}].Answer" id="FaqFeatures[${count}].Answer" />
+                                                                                        </div>
+                                                                                        <div class="col-4 mb-3">
+                                                                                            <button type="button" class="btn btn-success-soft add-feature">Add</button>
+                                                                                            <button type="button" class="btn btn-danger-soft delete-feature">Delete</button>
+                                                                                        </div>
+                                                                                    </div>`;
+
+            $('.panel-add').append(panel);
+        });
+        $(document).on('click', '.delete-feature', function () {
+            let deletedRow = $(this).closest('.row');
+            deletedRow.remove();
+
+
+            $('.panel-add .row').each(function (index) {
+                $(this).find('input[name^="FaqFeatures"]').eq(0).attr('name', `FaqFeatures[${index}].Question`);
+                $(this).find('input[name^="FaqFeatures"]').eq(1).attr('name', `FaqFeatures[${index}].Answer`);
+            });
+        });
+
+
+    </script>
+}

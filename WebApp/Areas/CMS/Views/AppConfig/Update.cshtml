@@ -1,0 +1,124 @@
+﻿@using Domain.Dtos.AppConfig;
+@model AppConfigDto
+@{
+    ViewData["Title"] = "Create";
+}
+
+<header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+    <div class="container-xl px-4">
+        <div class="page-header-content pt-4">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-auto mt-4">
+                    <h1 class="page-header-title">
+                        <span class="page-header-icon"><i data-feather="edit-3"></i></span>
+                        Yenile
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container-xl px-4 mt-n10">
+    <form id="fromloading" asp-action="Update" asp-antiforgery="true" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-header">Paremetrler</div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label" for="switchOne">Mevcut Logo Şəkil</label>
+                            @if (Model!.FileCode != null)
+                            {
+                                <div class="my-2">
+                                    <img class="img-account-profile rounded-1 border border-dark" src="~/@Model.FileCode">
+                                </div>
+                            }
+                            else
+                            {
+                                <p style="float: right;"><strong>Əlavə Olunmayib!</strong></p>
+                            }
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="switchOne">Logo Şəkil</label>
+                            <input name="logoFile" class="form-control" type="file" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png, .svg">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="switchOne">PhoneNumber</label>
+                            <input type="text" class="form-control" asp-for="PhoneNumber">
+                            <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="switchOne">Email</label>
+                            <input type="text" class="form-control" asp-for="Email">
+                            <span class="text-danger" asp-validation-for="Email"></span>
+                        </div>
+
+                     
+                        <div class="mb-3">
+                            <label class="form-label" for="switchOne">Adres</label>
+                            <input type="text" class="form-control" asp-for="Address">
+                            <span class="text-danger" asp-validation-for="Address"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="switchOne">MapCode</label>
+                            <input type="text" class="form-control" asp-for="MapCode">
+                            <span class="text-danger" asp-validation-for="MapCode"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="switchOne">Facebook</label>
+                            <input type="text" class="form-control" asp-for="Facebook">
+                            <span class="text-danger" asp-validation-for="Facebook"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label" for="switchOne">Instagram</label>
+                            <input type="text" class="form-control" asp-for="Instagram">
+                            <span class="text-danger" asp-validation-for="Instagram"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="switchOne">Linkedin</label>
+                            <input type="text" class="form-control" asp-for="Linkedin">
+                            <span class="text-danger" asp-validation-for="Linkedin"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="switchOne">Youtube</label>
+                            <input type="text" class="form-control" asp-for="Youtube">
+                            <span class="text-danger" asp-validation-for="Youtube"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="switchOne">FacebookPixel</label>
+                            <textarea class="form-control" asp-for="FacebookPixel" rows="4" cols="4"></textarea>
+                            <span class="text-danger" asp-validation-for="FacebookPixel"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="switchOne">GoogleAnalytics</label>
+                            <textarea class="form-control" asp-for="GoogleAnalytics" rows="4" cols="4"></textarea>
+                            <span class="text-danger" asp-validation-for="GoogleAnalytics"></span>
+                        </div>
+
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="FileCode" />
+
+                        <div class="bn">
+                            <button type="submit" class="btn  btn-primary">Əlavə Et</button>
+                            <a asp-action="Index" class="btn  btn-dark">İmitina Et</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+

@@ -1,0 +1,126 @@
+.payment-section{
+     @include margin-bottom(60px);
+    .header{
+        @include padding-bottom(60px);
+        .heading{
+            @include font-size(40px);
+            color: #140A6A;
+            margin-bottom: 37px;
+        }
+        .texting{
+            color: #140A6A;
+            font-size: 20px;
+        }
+    }
+    form{
+        .form-box {
+            margin-bottom: 24px;
+
+            .input-box {
+              position: relative;
+
+              .icon {
+                position: absolute;
+                left: 25px;
+                top: 19px;
+                width: 20px;
+                height: 20px;
+              }
+
+              .see-paswword {
+                position: absolute;
+                right: 22px;
+                top: 22px;
+                cursor: pointer;
+
+                &:hover {
+                  i {
+                    color: #140a6a;
+                  }
+                }
+
+                i {
+                  @extend %transition3;
+                  color: #cacaca;
+                  font-size: 20px;
+                }
+              }
+
+              .form-select,
+              .form-control {
+                padding-left: 55px;
+                height: 60px;
+                color: #140a6a;
+                font-size: 17px;
+
+                &::placeholder {
+                  font-weight: 500;
+                  font-size: 17px;
+                }
+              }
+
+              .form-select {
+                background-position: right 1rem center;
+                background-size: 19px 18px;
+                font-weight: 500;
+              }
+            }
+
+            label {
+              color: #5c5c5c;
+              padding-left: 20px;
+              padding-bottom: 20px;
+              margin-bottom: 0px;
+            }
+          }
+
+    }
+    .payment-info{
+      min-height: 425px;
+      border: 1px dashed #140A6A;
+      @include padding(55px 30px);
+      h5{
+        @include font-size(25px);
+        color: #140A6A;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .basket-content{
+        .basket{
+       
+          .basket-item{
+            margin-bottom: 40px;
+            .event-name{
+              color: #140A6A;
+              font-weight: 600;
+              margin-bottom: 20px;
+              line-height: 24px;
+            }
+            .price,
+            .count{
+              color: #140A6A;
+              font-size: 17px;
+            }
+
+  
+            &:last-child{
+              padding-bottom: 40px;
+              border-bottom: 1px solid #CACACA;
+            }
+          }
+        }
+        .totals-text{
+          .price,
+          .count{
+            color: #140A6A;
+            font-size: 20px;
+          }
+
+          .count{
+            font-weight: 300;
+          }
+        }
+      }
+  
+    }
+}

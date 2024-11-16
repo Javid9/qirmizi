@@ -1,0 +1,174 @@
+﻿@using Domain.Dtos.Event;
+@using Domain.Enums
+@model UpdateEvenetDto
+@{
+    ViewData["Title"] = "Update";
+}
+
+
+@{
+    var languages = (await languageService.GetAllLangAsync()).Data.Select(x => new { Code = x.Code, Name = x.Name }).ToList();
+
+    var forms = new List<FormField>();
+    var formSeo = new List<FormField>();
+    for (int index = 0; index < languages.Count; index++)
+    {
+
+        var lang = languages[index];
+        var model = Model.EventLangauges?.FirstOrDefault(x => x.Language_Code == lang.Code);
+
+        forms.Add(new FormField { LangCode = lang.Code, Name = $"EventLangauges[{index}].Title", Type = "text", Label = $"Başlıq", Required = false, Value = model?.Title });
+        forms.Add(new FormField { LangCode = lang.Code, Name = $"EventLangauges[{index}].Address", Type = "text", Label = $"Address", Required = false, Value = model?.Address });
+        forms.Add(new FormField { LangCode = lang.Code, Name = $"EventLangauges[{index}].Price", Type = "text", Label = $"Qiymet", Required = false, Value = model?.Price });
+        forms.Add(new FormField { LangCode = lang.Code, Name = $"EventLangauges[{index}].Text", Type = "text", Label = $"Mətin", Required = false, Value = model?.Text });
+        forms.Add(new FormField { LangCode = lang.Code, Name = $"EventLangauges[{index}].Language_Code", Type = "hidden", Value = model?.Language_Code });
+        forms.Add(new FormField { LangCode = lang.Code, Name = $"EventLangauges[{index}].LangId", Type = "hidden", Value = model?.LangId });
+        forms.Add(new FormField { LangCode = lang.Code, Name = $"EventLangauges[{index}].EventId", Type = "hidden", Value = model?.EventId });
+
+
+        // Seo Form Update
+
+        formSeo.Add(new FormField { LangCode = lang.Code, Name = $"BlogLanguages[{index}].SeoTitle", Type = "text", Label = $"Seo Başlıq", Value = model?.SeoTitle });
+        formSeo.Add(new FormField { LangCode = lang.Code, Name = $"BlogLanguages[{index}].SeoKey", Type = "text", Label = $"Seo Key", Value = model?.SeoKey });
+        formSeo.Add(new FormField { LangCode = lang.Code, Name = $"BlogLanguages[{index}].SeoDesc", Type = "textarea", Label = $"Seo Izahat", Value = model?.SeoDesc });
+    }
+}
+
+
+
+
+<header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+    <div class="container-xl px-4">
+        <div class="page-header-content pt-4">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-auto mt-4">
+                    <h1 class="page-header-title">
+                        <span class="page-header-icon"><i data-feather="edit-3"></i></span>
+                        Yenile
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container-xl px-4 mt-n10">
+    <form id="fromloading" asp-action="Update" asp-antiforgery="true" enctype="multipart/form-data">
+        <div class="row">
+
+            <div class="col-lg-8">
+                <div class="card card-header-actions mb-4">
+                    <div class="card-header">
+                        Tercüme edilecek Sahələr
+                    </div>
+                    <div class="card-body">
+                        <language-tabs languages="languages" form-fields="forms" tab-id="event"></language-tabs>
+                    </div>
+                </div>
+
+                <div class="card card-header-actions mb-4">
+                    <div class="card-header">
+                        Event Seo İşləmləri
+                    </div>
+                    <div class="card-body">
+                        <language-tabs languages="languages" form-fields="formSeo" tab-id="event-seo"></language-tabs>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-header">Blog</div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label" for="switchOne">Mevcut Şəkil</label>
+                            @if (Model!.FileCode != null)
+                            {
+                                <div class="my-2">
+                                    <img class="img-account-profile rounded-1 border border-dark w-100" src="~/@Model.FileCode">
+                                </div>
+                            }
+                            else
+                            {
+                                <p style="float: right;"><strong>Elavə olunmayib!</strong></p>
+                            }
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="file">Şəkil</label>
+                            <input name="file" class="form-control" type="file" id="file" aria-describedby="addnae" accept=".jpeg, .jpg, .png, .svg">
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label">Saat</label>
+                            <input type="text" class="form-control" asp-for="Clock">
+                            <span class="text-danger" asp-validation-for="Clock"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Xerite</label>
+                            <input type="text" class="form-control" asp-for="Map">
+                            <span class="text-danger" asp-validation-for="Map"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Link</label>
+                            <input type="text" class="form-control" asp-for="Link">
+                            <span class="text-danger" asp-validation-for="Link"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label">Event Gunu</label>
+                            <input type="date" class="form-control" asp-for="EventDay">
+                            <span class="text-danger" asp-validation-for="EventDay"></span>
+                        </div>
+
+
+
+                        <div class="mb-3">
+                            <label class="form-label" for="switchOne">Spiker</label>
+                            <select class="form-control" asp-for="SpeakerIds" asp-items="ViewBag.Speakers">
+                                <option value="">Secin</option>
+                            </select>
+                            <span class="text-danger" asp-validation-for="SpeakerIds"></span>
+                        </div>
+
+
+
+                        <div class="mb-3">
+                            <label class="form-label" for="switchOne">Kategoria</label>
+                            <select class="form-control" asp-for="CategoryIds" asp-items="ViewBag.Categories">
+                                <option value="">Secin</option>
+                            </select>
+                            <span class="text-danger" asp-validation-for="CategoryIds"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="switchOne">Bilet Növü</label>
+                            <select class="form-control" asp-for="TicketType">
+                                <option value="">Seciniz</option>
+                                <option value="@TicketType.Silver">Silver</option>
+                                <option value="@TicketType.Gold">Gold</option>
+                            </select>
+                            <span class="text-danger" asp-validation-for="TicketType"></span>
+                        </div>
+
+
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="FileCode" />
+                        <div class="bn">
+                            <button type="submit" class="btn  btn-primary">Yadda Saxla</button>
+                            <a asp-action="Index" class="btn  btn-dark">İmtina</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+</div>
+
+
+
+
